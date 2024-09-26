@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct MovieCard:  View {
+    @EnvironmentObject var genreDataModel: GenreDataModel
     @ObservedObject var collpasedMovieCardViewModel: CollpasedMovieCardViewModel
+    
+    func getDescription() -> String{
+        let  stringGneres: [String]  = collpasedMovieCardViewModel.description.map { index in
+            if (collpasedMovieCardViewModel.card.mediaType == .movie){
+                
+                return genreDataModel.movies.first(where: {$0.id == index})?.name ?? ""
+            }else {
+                return genreDataModel.tv.first(where: {$0.id == index})?.name ?? ""
+            }
+        }
+        return stringGneres.joined(separator: ", ")
+    }
+    
+    
     var body: some View{
         ZStack {
             if let image = collpasedMovieCardViewModel.image {
                 Image(uiImage: image)
                     .resizable() // Allows the image to resize
                     .aspectRatio(1.5, contentMode: .fill)
+                    
                     .blur(radius: 25)
+                 
                 // Clips to bounds
             } else {
                 LinearGradient(gradient: Gradient(colors: [.orange, .white]),
@@ -36,23 +53,26 @@ struct MovieCard:  View {
                 VStack{
                     Text(collpasedMovieCardViewModel.title)
                         .font(.headline)
-                        .multilineTextAlignment(.center)
-                    Text(collpasedMovieCardViewModel.description)
-                        .font(.subheadline)
-                        .padding()
+                    
+                    Text(collpasedMovieCardViewModel.card.overview)
+                        .font(.callout)
+                        .padding(.vertical)
+                        .padding(.horizontal)
                     
                     HStack{
                         Text(collpasedMovieCardViewModel.releaseDate)
-                            .font(.footnote)
+                            .font(.caption)
                     }
-                    
-                    
-                }.foregroundStyle(Color.black)
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
+                }
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .foregroundStyle(Color.black)
+                .multilineTextAlignment(.center)
+                .padding(.vertical)
                 
                 
             }
+            
             .aspectRatio(1.5, contentMode: .fit)
             .cornerRadius(12)
             

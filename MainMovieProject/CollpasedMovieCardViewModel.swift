@@ -17,14 +17,14 @@ class CollpasedMovieCardViewModel: ObservableObject {
     
     @Published var image: UIImage?
     @Published var title = ""
-    @Published var description = ""
+    @Published var description: [Int]
     @Published var releaseDate = ""
     
     private var cancellables = Set<AnyCancellable>()
     init (resultCard: ResultCard) {
         card = resultCard
         title = card.originalTitle
-        description = card.overview
+        description = card.genreIDS
         releaseDate = card.releaseDate
         movieNetworkManager.fetchImage(posterPath: card.posterPath)
             .receive(on: DispatchQueue.main)
@@ -37,5 +37,8 @@ class CollpasedMovieCardViewModel: ObservableObject {
                     print("Could not convert data to image.")
                 }
             }.store(in: &cancellables)
+        
     }
+    
+   
 }

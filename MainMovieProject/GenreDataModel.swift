@@ -15,14 +15,23 @@ class GenreDataModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var movies: [Genre] = []
+    @Published var tv: [Genre] = []
     
     init() {
-        networkManager.fetchMoviesGenre(forMovie: .tv)
+        networkManager.fetchMoviesGenre(forMovie: .movie)
             .map { $0.genres }
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] genres in
                 self?.movies = genres
+            })
+            .store(in: &cancellables)
+        networkManager.fetchMoviesGenre(forMovie: .tv)
+            .map { $0.genres }
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] genres in
+                self?.tv = genres
             })
             .store(in: &cancellables)
     }

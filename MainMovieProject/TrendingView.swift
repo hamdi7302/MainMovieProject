@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TrendingView: View {
-    @ObservedObject var customPresentationviewModel =  CustomPresentationviewModel()
+    @StateObject var customPresentationviewModel =  CustomPresentationviewModel()
     
     @State private var selectedMovieId: Int = 1
     
@@ -20,9 +20,7 @@ struct TrendingView: View {
                 LazyVStack(spacing: 12 ){
                     ForEach(customPresentationviewModel.movies, id: \.id) { movie in
                         MovieCard( collpasedMovieCardViewModel: CollpasedMovieCardViewModel(resultCard: movie))
-                            .onTapGesture {
-                                selectedMovieId = movie.id
-                            }
+                            
                             .overlay(alignment: .trailing, content: {
                                 if movie.id == selectedMovieId {
                                     
@@ -38,6 +36,11 @@ struct TrendingView: View {
                                     
                                 }
                                 
+                            }
+                            .onTapGesture {
+                                withAnimation {
+                                    selectedMovieId = movie.id
+                                                       }
                             }
                     }
                 }
