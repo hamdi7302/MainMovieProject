@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+
 @main
 struct MainMovieProjectApp: App {
+    
+    @StateObject var genresDataModel = GenreDataModel()
     var body: some Scene {
         WindowGroup {
             TrendingView()
-        }
+        }.environmentObject(genresDataModel)
     }
 }
+
+

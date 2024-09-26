@@ -9,7 +9,7 @@ import Foundation
 import NetworkingPackage
 import UIKit
 import Combine
-
+import NetworkingPackage
 
 class CollpasedMovieCardViewModel: ObservableObject {
     let card : ResultCard
@@ -26,15 +26,16 @@ class CollpasedMovieCardViewModel: ObservableObject {
         title = card.originalTitle
         description = card.overview
         releaseDate = card.releaseDate
-        movieNetworkManager.fetchImage(posterPath: card.posterPath).sink { res in
-            
-        } receiveValue: { [weak self] receivedImage in
-            if let checkedImage = receivedImage {
-                self?.image = checkedImage
-            } else {
-                print("Could not convert data to image.")
-            }
-        }.store(in: &cancellables)
-        
+        movieNetworkManager.fetchImage(posterPath: card.posterPath)
+            .receive(on: DispatchQueue.main)
+            .sink { res in
+                
+            } receiveValue: { [weak self] receivedImage in
+                if let checkedImage = receivedImage {
+                    self?.image = checkedImage
+                } else {
+                    print("Could not convert data to image.")
+                }
+            }.store(in: &cancellables)
     }
 }
