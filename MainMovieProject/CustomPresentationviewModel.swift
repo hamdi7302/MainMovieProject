@@ -13,7 +13,7 @@ class CustomPresentationviewModel: ObservableObject {
     
     let movieNetworkManger = MovieNetworkManager()
     @Published var movies: [ResultCard] = []
-    
+    @Published var selectedMovieId: Int?
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -32,6 +32,7 @@ class CustomPresentationviewModel: ObservableObject {
             } receiveValue: { [self] result  in
                 
                 self.movies = result.results
+                selectedMovieId = movies.first?.id
                 
             }.store(in: &cancellables)
     }

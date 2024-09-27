@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Leftbuttons: View {
+    @ObservedObject  var leftbuttonsViewModel = LeftbuttonsViewModel()
+    
     var body: some View {
         VStack {
             VStack(spacing: 15 ) {
@@ -16,43 +18,26 @@ struct Leftbuttons: View {
                     
                 } label: {
                     Image(systemName: "info.circle.fill")
-                        .mask {
-                            Circle().fill(Color.white)
-                        }
+                        .foregroundStyle(Color.white)
                 }
                 
                 Button {
-                    
+                    leftbuttonsViewModel.favorie.toggle()
                 } label: {
-                    Image(systemName: "play.fill")
-                        .foregroundStyle(Color.orange)
-                    
-                }
-                Button {
-                    
-                } label: {
-                    Image(systemName: "plus.rectangle.fill.on.rectangle.fill")
-                        .foregroundStyle(Color.green)
-                    
-                }
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "heart.fill")
+                    Image(systemName: leftbuttonsViewModel.favorie ?  "heart.fill" : "heart")
                         .foregroundStyle(Color.pink)
                     
                 }
                 Button {
-                    
+                    leftbuttonsViewModel.rateTheMovie.toggle()
                 } label: {
-                    Image(systemName: "star.fill")
+                    Image(systemName: leftbuttonsViewModel.rateTheMovie ? "star.fill" : "star")
                         .foregroundStyle(Color.yellow)
                 }
                 Button {
-                    
+                    leftbuttonsViewModel.WishList.toggle()
                 } label: {
-                    Image(systemName: "bookmark.fill")
+                    Image(systemName: leftbuttonsViewModel.WishList ?  "bookmark.fill" : "bookmark")
                         .foregroundStyle(Color.teal)
                     
                 }
@@ -61,6 +46,19 @@ struct Leftbuttons: View {
     }
 }
 
+
 #Preview {
     Leftbuttons()
+}
+
+
+class LeftbuttonsViewModel: ObservableObject {
+    @Published var showinfoDetails = false
+    @Published var favorie = false
+    @Published var rateTheMovie = false
+    @Published var WishList = false
+    
+    init() {
+    }
+    
 }

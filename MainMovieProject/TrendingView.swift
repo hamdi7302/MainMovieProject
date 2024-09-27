@@ -10,7 +10,7 @@ import SwiftUI
 struct TrendingView: View {
     @StateObject var customPresentationviewModel =  CustomPresentationviewModel()
     
-    @State private var selectedMovieId: Int = 1
+    
     
     var body: some View {
         
@@ -20,12 +20,9 @@ struct TrendingView: View {
                 LazyVStack(spacing: 12 ){
                     ForEach(customPresentationviewModel.movies, id: \.id) { movie in
                         MovieCard( collpasedMovieCardViewModel: CollpasedMovieCardViewModel(resultCard: movie))
-                            
                             .overlay(alignment: .trailing, content: {
-                                if movie.id == selectedMovieId {
-                                    
+                                if movie.id == customPresentationviewModel.selectedMovieId {
                                     Leftbuttons().offset(x:27)
-                                    
                                 }
                             })
                             .overlay {
@@ -39,39 +36,35 @@ struct TrendingView: View {
                             }
                             .onTapGesture {
                                 withAnimation {
-                                    selectedMovieId = movie.id
-                                                       }
+                                    customPresentationviewModel.selectedMovieId = movie.id
+                                }
                             }
                     }
                 }
                 .padding(.horizontal,30)
             }
+             
             .tabItem {
                 VStack{
                     Image(systemName: "lasso.badge.sparkles")
                     Text("Trending")
                 } }.tag(1)
-            Text("Popular").tabItem { 
+            Text("Popular").tabItem {
                 VStack{
                     Image(systemName: "lasso") }.tag(2)
-                    Text("Popular")
-                }
-               
-            
+                Text("Popular")
+            }
             Text("Search").tabItem {
                 VStack{
                     Image(systemName: "magnifyingglass") }.tag(3)
-                    Text("Search")
-                }
+                Text("Search")
+            }
             
             Text("More").tabItem {
                 VStack{
                     Image(systemName: "ellipsis") }.tag(4)
-                    Text("More")
-                }
-            
-
-           
+                Text("More")
+            }
         })
     }
 }

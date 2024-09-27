@@ -28,10 +28,13 @@ struct MovieCard:  View {
         ZStack {
             if let image = collpasedMovieCardViewModel.image {
                 Image(uiImage: image)
-                    .resizable() // Allows the image to resize
-                    .aspectRatio(1.5, contentMode: .fill)
-                    
+                    .resizable()
                     .blur(radius: 25)
+                    .aspectRatio(1.5, contentMode: .fill)
+                    .overlay(
+                        Color.white.opacity(0.2)
+                    )
+                    .cornerRadius(12)
                  
                 // Clips to bounds
             } else {
