@@ -46,10 +46,32 @@ struct TrendingView: View {
                 }
                 .padding(.horizontal,30)
             }
-            .tabItem { Image(systemName: "lasso.badge.sparkles") }.tag(1)
-            Text("Popular").tabItem { Image(systemName: "lasso") }.tag(2)
-            Text("Settings").tabItem { Image(systemName: "list.bullet.rectangle.fill") }.tag(2)
-            Text("Settings").tabItem { Image(systemName: "gearshape.fill") }.tag(2)
+            .tabItem {
+                VStack{
+                    Image(systemName: "lasso.badge.sparkles")
+                    Text("Trending")
+                } }.tag(1)
+            Text("Popular").tabItem { 
+                VStack{
+                    Image(systemName: "lasso") }.tag(2)
+                    Text("Popular")
+                }
+               
+            
+            Text("Search").tabItem {
+                VStack{
+                    Image(systemName: "magnifyingglass") }.tag(3)
+                    Text("Search")
+                }
+            
+            Text("More").tabItem {
+                VStack{
+                    Image(systemName: "ellipsis") }.tag(4)
+                    Text("More")
+                }
+            
+
+           
         })
     }
 }
