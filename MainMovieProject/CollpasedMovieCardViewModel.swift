@@ -11,8 +11,9 @@ import UIKit
 import Combine
 import NetworkingPackage
 
+ 
 class CollpasedMovieCardViewModel: ObservableObject {
-    let card : ResultCard
+    let card : Movie
     let movieNetworkManager = MovieNetworkManager()
     
     @Published var image: UIImage?
@@ -21,11 +22,11 @@ class CollpasedMovieCardViewModel: ObservableObject {
     @Published var releaseDate = ""
     
     private var cancellables = Set<AnyCancellable>()
-    init (resultCard: ResultCard) {
+    init (resultCard: Movie) {
         card = resultCard
         title = card.originalTitle
-        description = card.genreIDS
-        releaseDate = card.releaseDate
+        description = card.genreids
+        releaseDate = card.realeaseDate
         movieNetworkManager.fetchImage(posterPath: card.posterPath)
             .receive(on: DispatchQueue.main)
             .sink { res in
@@ -37,8 +38,5 @@ class CollpasedMovieCardViewModel: ObservableObject {
                     print("Could not convert data to image.")
                 }
             }.store(in: &cancellables)
-        
     }
-    
-   
 }

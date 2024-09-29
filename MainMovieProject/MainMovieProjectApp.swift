@@ -12,9 +12,11 @@ import SwiftUI
 struct MainMovieProjectApp: App {
     
     @ObservedObject var genresDataModel = GenreDataModel()
+    let repo = TrendingMovieReposioryImpl() 
     var body: some Scene {
+        
         WindowGroup {
-            TrendingView()
+            TrendingView(viewModel: TrendingMoviesViewModel(trending: GetTrendingUseCase(repository: repo)))
         }
         .environmentObject(genresDataModel)
     }

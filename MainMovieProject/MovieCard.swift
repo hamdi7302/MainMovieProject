@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct MovieCard:  View {
+    
     @EnvironmentObject var genreDataModel: GenreDataModel
     @ObservedObject var collpasedMovieCardViewModel: CollpasedMovieCardViewModel
     
     func getDescription() -> String{
         let  stringGneres: [String]  = collpasedMovieCardViewModel.description.map { index in
-            if (collpasedMovieCardViewModel.card.mediaType == .movie){
+            if (collpasedMovieCardViewModel.card.mediaType == MediaType.movie.rawValue){
                 
                 return genreDataModel.movies.first(where: {$0.id == index})?.name ?? ""
             }else {

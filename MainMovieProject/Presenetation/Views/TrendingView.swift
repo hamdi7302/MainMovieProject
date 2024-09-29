@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct TrendingView: View {
-    @StateObject var customPresentationviewModel =  CustomPresentationviewModel()
-    
-    
-    
+    @StateObject var viewModel: TrendingMoviesViewModel
+
     var body: some View {
         
         TabView(selection: .constant(1),
                 content:  {
             ScrollView (showsIndicators: false) {
                 LazyVStack(spacing: 12 ){
-                    ForEach(customPresentationviewModel.movies, id: \.id) { movie in
+                    ForEach(viewModel.movies, id: \.id) { movie in
                         MovieCard( collpasedMovieCardViewModel: CollpasedMovieCardViewModel(resultCard: movie))
                             .overlay(alignment: .trailing, content: {
-                                if movie.id == customPresentationviewModel.selectedMovieId {
+                                if movie.id == viewModel.selectedMovieId {
                                     Leftbuttons().offset(x:27)
                                 }
                             })
@@ -36,12 +34,17 @@ struct TrendingView: View {
                             }
                             .onTapGesture {
                                 withAnimation {
-                                    customPresentationviewModel.selectedMovieId = movie.id
+                                    viewModel.selectedMovieId = movie.id
                                 }
                             }
                     }
                 }
                 .padding(.horizontal,30)
+                .onAppear(perform: {
+                    withAnimation {
+                        viewModel.fetchtrendingMovies()
+                    }
+                })
             }
              
             .tabItem {
@@ -69,10 +72,10 @@ struct TrendingView: View {
     }
 }
 
-#Preview {
-    TrendingView()
-}
-
+//#Preview {
+//    TrendingView()
+//}
+//
 
 
 
