@@ -46,10 +46,15 @@ protocol AppService {
 
 public class MovieNetworkManager: AppService {
     
+    static let shared : MovieNetworkManager = MovieNetworkManager()
     
-    public init() {
-         self.networkManager = NetworkManager()
-     }
+    private let apiKey = "c8eeea30d19c18b002f6f906e9c17475"
+    
+    private let networkManager: NetworkManager = NetworkManager()
+    init() {
+        
+    }
+  
     
     // inclsue as @EnvironmentObject  in Datamodel  with the type tv or movies
     public func fetchMoviesGenre(forMovie: GenreType) -> AnyPublisher<Genres,NetworkError> {
@@ -68,8 +73,7 @@ public class MovieNetworkManager: AppService {
     }
     
     
-    private let apiKey = "c8eeea30d19c18b002f6f906e9c17475"
-    let networkManager: NetworkManager
+  
     
      func fetchAllTrending(trendingType: TrendingTypeDTO) -> AnyPublisher<TrendingMoviesDTO, NetworkError> {
         

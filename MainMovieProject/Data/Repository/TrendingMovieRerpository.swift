@@ -12,5 +12,4 @@ import Combine
 
 protocol TrendingMovieRerpository {
     func getTrendingMovies(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie], NetworkError>
-    func likeUnlike(mediaParams: FavoriteMovieDetailsDTO) -> AnyPublisher<Response,NetworkError>
 }
