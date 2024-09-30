@@ -11,13 +11,13 @@ import NetworkingPackage
 
 
 class GetTrendingUseCase {
-    private let repository: TrendingMovieRerpository
+    private let repository: TrendingMediaRerpository
     
-    init(repository: TrendingMovieRerpository) {
+    init(repository: TrendingMediaRerpository) {
         self.repository = repository
     }
     
     func execute(params:  TrendingTypeDTO) -> AnyPublisher<[Movie], NetworkError> {
-        return repository.getTrendingMovies(trendingType: .day)
+        return repository.getTrendingMedia(trendingType: .day)
     }
 }

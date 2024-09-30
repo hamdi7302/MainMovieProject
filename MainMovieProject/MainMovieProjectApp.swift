@@ -12,7 +12,7 @@ import SwiftUI
 struct MainMovieProjectApp: App {
     
     @ObservedObject var genresDataModel = GenreDataModel()
-    let repo = TrendingMovieReposioryImpl() 
+    let repo = TrendingMediaReposioryImpl() 
     var body: some Scene {
         
         WindowGroup {

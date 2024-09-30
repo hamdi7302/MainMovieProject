@@ -9,14 +9,11 @@ import Foundation
 import NetworkingPackage
 import Combine
 
-struct TrendingMovieReposioryImpl: TrendingMovieRerpository {
+struct TrendingMediaReposioryImpl: TrendingMediaRerpository {
   
-    func getTrendingMovies(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie],NetworkError> {
+    func getTrendingMedia(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie],NetworkError> {
         MovieNetworkManager.shared.fetchAllTrending(trendingType: .day)
             .map{MovieMapper.converttoEntity(moviesDTO: $0.results)}
             .eraseToAnyPublisher()
-
     }
-    
- 
 }

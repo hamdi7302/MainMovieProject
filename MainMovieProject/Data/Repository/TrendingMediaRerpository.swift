@@ -10,6 +10,6 @@ import NetworkingPackage
 import Combine
 
 
-protocol TrendingMovieRerpository {
-    func getTrendingMovies(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie], NetworkError>
+protocol TrendingMediaRerpository {
+    func getTrendingMedia(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie], NetworkError>
 }

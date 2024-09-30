@@ -10,7 +10,7 @@ import Combine
 
 
 class TrendingMoviesViewModel: ObservableObject{
-    private let repository = TrendingMovieReposioryImpl()
+    private let repository = TrendingMediaReposioryImpl()
     private let getTrandingmovieUseCase: GetTrendingUseCase
     private var cancellables = Set<AnyCancellable>()
     @Published var selectedMovieId: Int?
