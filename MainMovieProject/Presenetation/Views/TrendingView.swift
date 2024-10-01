@@ -17,21 +17,8 @@ struct TrendingView: View {
             ScrollView (showsIndicators: false) {
                 LazyVStack(spacing: 12 ){
                     ForEach(viewModel.movies, id: \.id) { movie in
-                        MovieCard( collpasedMovieCardViewModel: CollpasedMovieCardViewModel(resultCard: movie))
-                            .overlay(alignment: .trailing, content: {
-                                if movie.id == viewModel.selectedMovieId {
-                                    Leftbuttons().offset(x:27)
-                                }
-                            })
-                            .overlay {
-                                ZStack(alignment: .topTrailing){
-                                    Color.clear
-                                    Image(systemName: "").padding()
-                                        .foregroundColor(.white)
-                                    
-                                }
-                                
-                            }
+                        MediaCard(viewModel: MediaCardViewModel(resultCard: movie, isSelected: viewModel.selectedMovieId == movie.id))
+                         
                             .onTapGesture {
                                 withAnimation {
                                     viewModel.selectedMovieId = movie.id

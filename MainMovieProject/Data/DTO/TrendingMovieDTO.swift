@@ -81,8 +81,6 @@ extension FavoriteMovieDetailsDTO {
     }
 }
 
-
-
 public enum TrendingTypeDTO: String {
     case day
     case week

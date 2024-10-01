@@ -10,23 +10,22 @@ import Combine
 
 
 class TrendingMoviesViewModel: ObservableObject{
-    private let repository = TrendingMediaReposioryImpl()
-    private let getTrandingmovieUseCase: GetTrendingUseCase
+    private let getTrendingUseCase: GetTrendingUseCase
     private var cancellables = Set<AnyCancellable>()
-    @Published var selectedMovieId: Int?
+    @Published var selectedMovieId: Int? = nil
     @Published var movies: [Movie] = []
     
-    init(trending: GetTrendingUseCase) {
-        self.getTrandingmovieUseCase = trending
+    init( getTrendingUseCase: GetTrendingUseCase) {
+        self.getTrendingUseCase = getTrendingUseCase
     }
     
-    func fetchtrendingMovies ()  {
-        getTrandingmovieUseCase.execute(params: .day)
+    func fetchtrendingMovies () {
+        getTrendingUseCase.execute(params: .day)
             .receive(on: DispatchQueue.main) // Ensure UI updates happen on the main thread
             .sink { completion in
                 switch completion {
-                case .failure(let error): break
-                    //                       self.errorMessage = error.localizedDescription
+                case .failure(_): break
+                    //  self.errorMessage = error.localizedDescription
                 case .finished:
                     break
                 }

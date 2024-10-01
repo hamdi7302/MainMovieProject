@@ -9,15 +9,20 @@ import Foundation
 import Combine
 import NetworkingPackage
 
+protocol GetTrendingUseCase {
+    func execute(params:  TrendingTypeDTO) -> AnyPublisher<[Movie], NetworkError>
+}
 
-class GetTrendingUseCase {
+class GetTrendingUseCaseImpl: GetTrendingUseCase {
+   
     private let repository: TrendingMediaRerpository
     
     init(repository: TrendingMediaRerpository) {
         self.repository = repository
     }
     
-    func execute(params:  TrendingTypeDTO) -> AnyPublisher<[Movie], NetworkError> {
+    func execute(params: TrendingTypeDTO) -> AnyPublisher<[Movie],NetworkError> {
         return repository.getTrendingMedia(trendingType: .day)
     }
+ 
 }

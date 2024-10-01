@@ -13,3 +13,13 @@ import Combine
 protocol TrendingMediaRerpository {
     func getTrendingMedia(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie], NetworkError>
 }
+
+
+struct TrendingMediaReposioryImpl: TrendingMediaRerpository {
+  
+    func getTrendingMedia(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie],NetworkError> {
+        MovieNetworkManager.shared.fetchAllTrending(trendingType: .day)
+            .map{MovieMapper.converttoEntity(moviesDTO: $0.results)}
+            .eraseToAnyPublisher()
+    }
+}
