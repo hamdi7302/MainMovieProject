@@ -48,7 +48,7 @@ public class MovieNetworkManager: AppService {
     
     static let shared : MovieNetworkManager = MovieNetworkManager()
     
-    private let apiKey = "c8eeea30d19c18b002f6f906e9c17475"
+    private let apiKey = "24a88a21ab7c3515e507d9ea64d8d878"
     
     private let networkManager: NetworkManager = NetworkManager()
     init() {
@@ -88,10 +88,12 @@ public class MovieNetworkManager: AppService {
     public func likeMedia(params: [String:Any] ) -> AnyPublisher<Response, NetworkError> {
         let account_id = "9090719"
         var endoint = "https://api.themoviedb.org/3/account/\(account_id)/favorite"
-        endoint.append("?api_key=\(apiKey)") // to remove and append header user session
+        //   endoint.append("?api_key=\(apiKey)" to remove and append header user session
         
+        // this service is accesse in ly by seesion and not by api kry
         // to replace token with user token
-        return networkManager.request(endoint: endoint,params: params)
+        return networkManager.request(endoint: endoint,authmethod: .post, params: params)
+    
     }
 }
 

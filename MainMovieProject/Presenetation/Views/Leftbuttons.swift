@@ -8,36 +8,38 @@
 import SwiftUI
 
 struct Leftbuttons: View {
-    @ObservedObject  var leftbuttonsViewModel = LeftbuttonsViewModel()
-    
+    @ObservedObject  var viewModel = LeftbuttonsViewModel()
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+    @State var favorite : Bool = false // to get initial state from another api
     var body: some View {
         VStack {
             VStack(spacing: 15 ) {
                 
                 Button {
-                    
+                 
                 } label: {
                     Image(systemName: "info.circle.fill")
                         .foregroundStyle(Color.white)
                 }
                 
                 Button {
-                    leftbuttonsViewModel.favorie.toggle()
+                    viewModel.favorie.toggle()
+                    mediaCardViewModel.setFavorite(viewModel.favorie)
                 } label: {
-                    Image(systemName: leftbuttonsViewModel.favorie ?  "heart.fill" : "heart")
+                    Image(systemName: viewModel.favorie ?  "heart.fill" : "heart")
                         .foregroundStyle(Color.pink)
                     
                 }
                 Button {
-                    leftbuttonsViewModel.rateTheMovie.toggle()
+                    viewModel.rateTheMovie.toggle()
                 } label: {
-                    Image(systemName: leftbuttonsViewModel.rateTheMovie ? "star.fill" : "star")
+                    Image(systemName: viewModel.rateTheMovie ? "star.fill" : "star")
                         .foregroundStyle(Color.yellow)
                 }
                 Button {
-                    leftbuttonsViewModel.WishList.toggle()
+                    viewModel.WishList.toggle()
                 } label: {
-                    Image(systemName: leftbuttonsViewModel.WishList ?  "bookmark.fill" : "bookmark")
+                    Image(systemName: viewModel.WishList ?  "bookmark.fill" : "bookmark")
                         .foregroundStyle(Color.teal)
                     
                 }
@@ -46,10 +48,10 @@ struct Leftbuttons: View {
     }
 }
 
-
-#Preview {
-    Leftbuttons()
-}
+//
+//#Preview {
+//    Leftbuttons()
+//}
 
 
 class LeftbuttonsViewModel: ObservableObject {

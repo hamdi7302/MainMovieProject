@@ -10,7 +10,7 @@ import SwiftUI
 struct MediaCard: View {
     
     @EnvironmentObject var genreDataModel: GenreDataModel
-    @ObservedObject var viewModel: MediaCardViewModel
+    @StateObject var viewModel: MediaCardViewModel
     
     func getDescription() -> String{
         let  stringGneres: [String]  = viewModel.description.map { index in
@@ -88,7 +88,7 @@ struct MediaCard: View {
             
         } .overlay(alignment: .trailing, content: {
             if viewModel.showActions {
-                Leftbuttons().offset(x:27)
+                Leftbuttons(mediaCardViewModel: viewModel).offset(x:27)
             }
         })
         .onAppear(perform: {
@@ -100,8 +100,8 @@ struct MediaCard: View {
     }
 }
 
-    #Preview {
-        MediaCard(viewModel: MediaCardViewModel(resultCard: Movie(id: 12, originalTitle: "", overview: "", popularity: 10, realeaseDate: "", mediaType: "", genreids: [], posterPath: ""), isSelected: false))
-    }
+//    #Preview {
+//        MediaCard(viewModel: MediaCardViewModel(resultCard: Movie(id: 12, originalTitle: "", overview: "", popularity: 10, realeaseDate: "", mediaType: "", genreids: [], posterPath: ""), isSelected: false))
+//    }
 
 

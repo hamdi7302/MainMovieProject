@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "E6038E3E-0761-438E-94C3-9365DEAD034A"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAD4F1FD-28DD-4E3E-B3D5-77F6822B9464"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "setImageToNil()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "79672B44-1616-4631-B9A0-F52A538DDBFA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "setFavorite(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12E4886F-8A3E-4C00-9791-513A2D653A17"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "setFavorite(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "12E4886F-8A3E-4C00-9791-513A2D653A17 - dafad0f5e307e08f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Combine.Subscribers.Completion&lt;NetworkingPackage.NetworkError&gt;) -&gt; () in MainMovieProject.MediaCardViewModel.setFavorite(Swift.Bool) -&gt; ()"
+                  moduleName = "MainMovieProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hamdi/Desktop/MainMovieProject/MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42">
+               </Location>
+               <Location
+                  uuid = "12E4886F-8A3E-4C00-9791-513A2D653A17 - 995276f7cc48950d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (MainMovieProject.Response) -&gt; () in MainMovieProject.MediaCardViewModel.setFavorite(Swift.Bool) -&gt; ()"
+                  moduleName = "MainMovieProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hamdi/Desktop/MainMovieProject/MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7902DC9E-CC0F-4A3E-A040-1758DBD9721D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MainMovieProject/Data/Network/MovieNetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "likeMedia(params:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -10,18 +10,24 @@ import SwiftUI
 struct TrendingView: View {
     @StateObject var viewModel: TrendingMoviesViewModel
 
+    private func updateSelectedStates() {
+            for index in viewModel.mediaCardViewModels.indices {
+                viewModel.mediaCardViewModels[index].showActions = (viewModel.mediaCardViewModels[index].card.id == viewModel.selectedMovieId)
+            }
+        }
+    
     var body: some View {
         
         TabView(selection: .constant(1),
                 content:  {
             ScrollView (showsIndicators: false) {
                 LazyVStack(spacing: 12 ){
-                    ForEach(viewModel.movies, id: \.id) { movie in
-                        MediaCard(viewModel: MediaCardViewModel(resultCard: movie, isSelected: viewModel.selectedMovieId == movie.id))
-                         
+                    ForEach(viewModel.mediaCardViewModels, id: \.card.id) { mediaViewModel in
+                        MediaCard(viewModel: mediaViewModel) // Pass the individual view model
                             .onTapGesture {
                                 withAnimation {
-                                    viewModel.selectedMovieId = movie.id
+                                    viewModel.selectedMovieId =  mediaViewModel.card.id
+                                    updateSelectedStates()
                                 }
                             }
                     }

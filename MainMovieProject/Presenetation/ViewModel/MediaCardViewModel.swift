@@ -14,26 +14,35 @@ import NetworkingPackage
  
 class MediaCardViewModel: ObservableObject {
     let card: Movie
-    @Published var showActions: Bool{
-        didSet{
-            executeFetchImage()
-        }
-    }
-   
+    @Published var showActions: Bool
     @Published var image: UIImage?
     @Published var title = ""
     @Published var description: [Int]
     @Published var releaseDate = ""
     private let fetchImageUseCase: FetchImageUseCase
-
+    private var favoriteUseCase: AddToFavoritesUseCase
+    
     private var cancellables = Set<AnyCancellable>()
-    init (resultCard: Movie,isSelected:Bool ) {
+    init (resultCard: Movie,isSelected:Bool, mediaRepository : MediaDetailsRepo ) {
         card = resultCard
         showActions = isSelected
         title = card.originalTitle
         description = card.genreids
         releaseDate = card.realeaseDate
-        fetchImageUseCase = FetchImageUseCaseImpl(repo: MediaDetailsRepoImpl())
+        fetchImageUseCase = FetchImageUseCaseImpl(repo: mediaRepository)
+        favoriteUseCase = AddToFavoritesUseCaseImpl(favoritesRepository: mediaRepository)
+    }
+    
+    func setFavorite(_ favorite: Bool){
+        
+        favoriteUseCase.execute(movie: FavoriteMovieDetailsDTO(media_id: card.id,
+                                                               media_type: MediaTypeDTO(rawValue: card.mediaType ) ?? .movie,
+                                                                favorite: favorite)).sink { res in
+            
+        } receiveValue: { res in
+            print("Marked Successfullt") //  make a toast or something
+        }.store(in: &cancellables)
+
     }
     
     func executeFetchImage() {

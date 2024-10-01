@@ -13,23 +13,25 @@ struct MainMovieProjectApp: App {
     
     @ObservedObject var genresDataModel = GenreDataModel()
     
-    let repo: TrendingMediaReposioryImpl
-    let getTrendingUseCase: GetTrendingUseCaseImpl
+    let trendingRepoImpl: TrendingMediaReposioryImpl
+    let getTrendingUseCaseImpl: GetTrendingUseCaseImpl
     let trendingMoviesViewModel: TrendingMoviesViewModel
+    let mediaRepository: MediaDetailsRepoImpl
     
     init() {
-        repo = TrendingMediaReposioryImpl()
-        getTrendingUseCase = GetTrendingUseCaseImpl(repository: repo)
-        trendingMoviesViewModel = TrendingMoviesViewModel(getTrendingUseCase: getTrendingUseCase)
+        trendingRepoImpl = TrendingMediaReposioryImpl()
+        mediaRepository = MediaDetailsRepoImpl() // Initialize mediaRepository before using it
+        getTrendingUseCaseImpl = GetTrendingUseCaseImpl(repository: trendingRepoImpl)
+        trendingMoviesViewModel = TrendingMoviesViewModel(getTrendingUseCase: getTrendingUseCaseImpl, mediaRepository: mediaRepository)
     }
     
     var body: some Scene {
         
         WindowGroup {
-//            TrendingView(viewModel: trendingMoviesViewModel)
-            TestScreen()
+            TrendingView(viewModel: trendingMoviesViewModel)
+            //            TestScreen()
         }
-//        .environmentObject(genresDataModel)
+        .environmentObject(genresDataModel)
     }
 }
 

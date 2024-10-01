@@ -13,10 +13,12 @@ class TrendingMoviesViewModel: ObservableObject{
     private let getTrendingUseCase: GetTrendingUseCase
     private var cancellables = Set<AnyCancellable>()
     @Published var selectedMovieId: Int? = nil
-    @Published var movies: [Movie] = []
+    @Published var mediaCardViewModels: [MediaCardViewModel] = []
+    var mediaRepository: MediaDetailsRepoImpl
     
-    init( getTrendingUseCase: GetTrendingUseCase) {
+    init(getTrendingUseCase: GetTrendingUseCase, mediaRepository: MediaDetailsRepoImpl) { // to inject the test here
         self.getTrendingUseCase = getTrendingUseCase
+        self.mediaRepository = MediaDetailsRepoImpl()
     }
     
     func fetchtrendingMovies () {
@@ -25,13 +27,12 @@ class TrendingMoviesViewModel: ObservableObject{
             .sink { completion in
                 switch completion {
                 case .failure(_): break
-                    //  self.errorMessage = error.localizedDescription
-                case .finished:
-                    break
+                case .finished: break
                 }
-            } receiveValue: { movies in
-                self.movies = movies
-                self.selectedMovieId = movies.first?.id ?? 0
+            } receiveValue: { [weak self] movies in
+                guard let self = self else { return }
+                mediaCardViewModels = movies.enumerated().map({MediaCardViewModel(resultCard: $1,
+                                                                                  isSelected: $0 == 0, mediaRepository: self.mediaRepository)})
             }
             .store(in: &cancellables)
     }
