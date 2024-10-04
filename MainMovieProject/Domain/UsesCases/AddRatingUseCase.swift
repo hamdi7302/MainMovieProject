@@ -6,8 +6,22 @@
 //
 
 import Foundation
+import Combine
+import NetworkingPackage
 
+protocol AddRatingUseCase {
+    func execute (rateMovie: Int, mediaId: Int ) -> AnyPublisher<Response, NetworkError>
+}
 
-//protocol RateMediaUseCase {
-//    func setRating() {}
-//}
+class AddRatingUseCaseImple: AddRatingUseCase {
+    
+    private let ratingRepository: MediaDetailsRepo
+    
+    init(favoritesRepository: MediaDetailsRepo) {
+        self.ratingRepository = favoritesRepository
+    }
+    
+    func execute(rateMovie: Int, mediaId: Int ) -> AnyPublisher<Response, NetworkError> {
+        return ratingRepository.rateMedia(mediaId: mediaId, mediaRate: rateMovie)
+    }
+}

@@ -87,7 +87,7 @@ public class MovieNetworkManager: AppService {
     
     public func likeMedia(params: [String:Any] ) -> AnyPublisher<Response, NetworkError> {
         let account_id = "9090719"
-        var endoint = "https://api.themoviedb.org/3/account/\(account_id)/favorite"
+        let endoint = "https://api.themoviedb.org/3/account/\(account_id)/favorite"
         //   endoint.append("?api_key=\(apiKey)" to remove and append header user session
         
         // this service is accesse in ly by seesion and not by api kry
@@ -95,6 +95,13 @@ public class MovieNetworkManager: AppService {
         return networkManager.request(endoint: endoint,authmethod: .post, params: params)
     
     }
+    
+    public func rateMedia(queryParams: Int, params: [String:Any] ) -> AnyPublisher<Response, NetworkError> {
+        let endoint = "https://api.themoviedb.org/3/movie/\(queryParams)/rating"
+        return networkManager.request(endoint: endoint,authmethod: .post, params: params)
+    
+    }
+    
 }
 
  
