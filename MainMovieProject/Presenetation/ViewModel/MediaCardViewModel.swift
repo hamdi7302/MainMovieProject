@@ -21,6 +21,7 @@ class MediaCardViewModel: ObservableObject {
     @Published var releaseDate = ""
     private let fetchImageUseCase: FetchImageUseCase
     private var favoriteUseCase: AddToFavoritesUseCase
+    private var addRatingUseCase: AddRatingUseCase
     
     private var cancellables = Set<AnyCancellable>()
     init (resultCard: Movie,isSelected:Bool, mediaRepository : MediaDetailsRepo ) {
@@ -31,6 +32,15 @@ class MediaCardViewModel: ObservableObject {
         releaseDate = card.realeaseDate
         fetchImageUseCase = FetchImageUseCaseImpl(repo: mediaRepository)
         favoriteUseCase = AddToFavoritesUseCaseImpl(favoritesRepository: mediaRepository)
+        addRatingUseCase = AddRatingUseCaseImple(ratingRepository: mediaRepository)
+    }
+    
+    func setRating (_ rating: Int){
+        addRatingUseCase.execute(rateMovie: rating, mediaId: card.id).sink { res in
+            
+        } receiveValue: { res in
+            print("rated Successfully") //  make a toast or something
+        }.store(in: &cancellables)
     }
     
     func setFavorite(_ favorite: Bool){

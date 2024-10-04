@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct Leftbuttons: View {
-    @ObservedObject  var viewModel = LeftbuttonsViewModel()
+//    @ObservedObject  var viewModel = LeftbuttonsViewModel()
     @ObservedObject var mediaCardViewModel: MediaCardViewModel
-    @State var favorite : Bool = false // to get initial state from another api
+    
+    @State var showinfoDetails = false
+    @State var favorie = false
+    @State var rateTheMovie = false
+    @State var WishList = false
+    
     var body: some View {
         VStack {
             VStack(spacing: 15 ) {
@@ -23,23 +28,33 @@ struct Leftbuttons: View {
                 }
                 
                 Button {
-                    viewModel.favorie.toggle()
-                    mediaCardViewModel.setFavorite(viewModel.favorie)
+                    favorie.toggle()
+                    mediaCardViewModel.setFavorite(favorie)
                 } label: {
-                    Image(systemName: viewModel.favorie ?  "heart.fill" : "heart")
+                    Image(systemName: favorie ?  "heart.fill" : "heart")
                         .foregroundStyle(Color.pink)
                     
                 }
+                
                 Button {
-                    viewModel.rateTheMovie.toggle()
+                    rateTheMovie.toggle()
                 } label: {
-                    Image(systemName: viewModel.rateTheMovie ? "star.fill" : "star")
+                    Image(systemName: rateTheMovie ? "star.fill" : "star")
                         .foregroundStyle(Color.yellow)
+                }.overlay (alignment: .trailing){
+                    rateTheMovie ?
+                    ZStack{
+                        RatingView(viewModel: mediaCardViewModel)
+                            .offset(x: -25)
+                    }
+                    
+                    : nil
                 }
+                
                 Button {
-                    viewModel.WishList.toggle()
+                    WishList.toggle()
                 } label: {
-                    Image(systemName: viewModel.WishList ?  "bookmark.fill" : "bookmark")
+                    Image(systemName: WishList ?  "bookmark.fill" : "bookmark")
                         .foregroundStyle(Color.teal)
                     
                 }
@@ -48,19 +63,15 @@ struct Leftbuttons: View {
     }
 }
 
-//
-//#Preview {
-//    Leftbuttons()
-//}
 
-
-class LeftbuttonsViewModel: ObservableObject {
-    @Published var showinfoDetails = false
-    @Published var favorie = false
-    @Published var rateTheMovie = false
-    @Published var WishList = false
-    
-    init() {
+#Preview {
+    ZStack{
+        HStack{
+            Spacer()
+            Color.gray
+            Leftbuttons( mediaCardViewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "desciptin ", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
+        }
     }
-    
 }
+
+ 

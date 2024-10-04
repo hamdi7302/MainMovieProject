@@ -14,8 +14,8 @@
             filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "setImageToNil()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "setFavorite(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,40 +46,10 @@
             filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "setFavorite(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "12E4886F-8A3E-4C00-9791-513A2D653A17 - dafad0f5e307e08f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Combine.Subscribers.Completion&lt;NetworkingPackage.NetworkError&gt;) -&gt; () in MainMovieProject.MediaCardViewModel.setFavorite(Swift.Bool) -&gt; ()"
-                  moduleName = "MainMovieProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hamdi/Desktop/MainMovieProject/MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "12E4886F-8A3E-4C00-9791-513A2D653A17 - 995276f7cc48950d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (MainMovieProject.Response) -&gt; () in MainMovieProject.MediaCardViewModel.setFavorite(Swift.Bool) -&gt; ()"
-                  moduleName = "MainMovieProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hamdi/Desktop/MainMovieProject/MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

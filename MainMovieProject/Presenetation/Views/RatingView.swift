@@ -9,17 +9,19 @@ import SwiftUI
 
 struct RatingView: View {
     
+    @ObservedObject var viewModel: MediaCardViewModel
+    
     @State var rating: Int =  3
     
     private var starsView: some View {
         HStack{
             ForEach(1..<6) { index in
                 Image(systemName: "star.fill")
-                    .font(.title)
                     .foregroundColor(.gray)
                     .onTapGesture {
                         withAnimation(.easeInOut, {
                             rating = index
+                            viewModel.setRating(index)
                         })
                     }
             }
@@ -41,7 +43,8 @@ struct RatingView: View {
         starsView.overlay {
             starViewMask
         }.padding()
-        .background(Color.white)
+            .background(Color.black.opacity(0.7).blur(radius: 3.0))
+        .clipShape(RoundedRectangle(cornerRadius: 12.0))
     }
 }
 
@@ -49,7 +52,7 @@ struct RatingView: View {
 #Preview {
     ZStack{
         Color.cyan.ignoresSafeArea()
-        RatingView()
-            .clipShape(RoundedRectangle(cornerRadius: 12.0))
+        RatingView(viewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "desciptin ", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
+             
     }
 }

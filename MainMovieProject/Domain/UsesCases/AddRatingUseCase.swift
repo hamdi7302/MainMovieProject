@@ -17,8 +17,8 @@ class AddRatingUseCaseImple: AddRatingUseCase {
     
     private let ratingRepository: MediaDetailsRepo
     
-    init(favoritesRepository: MediaDetailsRepo) {
-        self.ratingRepository = favoritesRepository
+    init(ratingRepository: MediaDetailsRepo) {
+        self.ratingRepository = ratingRepository
     }
     
     func execute(rateMovie: Int, mediaId: Int ) -> AnyPublisher<Response, NetworkError> {
