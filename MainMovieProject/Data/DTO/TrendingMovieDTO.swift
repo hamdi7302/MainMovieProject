@@ -81,6 +81,30 @@ extension FavoriteMovieDetailsDTO {
     }
 }
 
+
+struct WatchlistMovieDetailsDTO: Codable {
+     init(media_id: Int, media_type: MediaTypeDTO, watchlist: Bool) {
+        self.media_id = media_id
+        self.media_type = media_type
+        self.watchlist = watchlist
+    }
+    var media_id: Int
+    var media_type: MediaTypeDTO
+    var watchlist: Bool
+}
+
+extension WatchlistMovieDetailsDTO {
+    func toDictionary() -> [String: Any] {
+        return [
+            "media_id": media_id,
+            "media_type": media_type.rawValue,
+            "watchlist": watchlist
+        ]
+    }
+}
+
+
+
 public enum TrendingTypeDTO: String {
     case day
     case week

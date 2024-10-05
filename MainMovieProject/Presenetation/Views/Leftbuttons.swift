@@ -4,74 +4,114 @@
 //
 //  Created by hamdi on 26/9/2024.
 //
-
 import SwiftUI
 
 struct Leftbuttons: View {
-//    @ObservedObject  var viewModel = LeftbuttonsViewModel()
-    @ObservedObject var mediaCardViewModel: MediaCardViewModel
     
-    @State var showinfoDetails = false
-    @State var favorie = false
-    @State var rateTheMovie = false
-    @State var WishList = false
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
     
     var body: some View {
         VStack {
-            VStack(spacing: 15 ) {
-                
-                Button {
-                 
-                } label: {
-                    Image(systemName: "info.circle.fill")
-                        .foregroundStyle(Color.white)
-                }
-                
-                Button {
-                    favorie.toggle()
-                    mediaCardViewModel.setFavorite(favorie)
-                } label: {
-                    Image(systemName: favorie ?  "heart.fill" : "heart")
-                        .foregroundStyle(Color.pink)
-                    
-                }
-                
-                Button {
-                    rateTheMovie.toggle()
-                } label: {
-                    Image(systemName: rateTheMovie ? "star.fill" : "star")
-                        .foregroundStyle(Color.yellow)
-                }.overlay (alignment: .trailing){
-                    rateTheMovie ?
-                    ZStack{
-                        RatingView(viewModel: mediaCardViewModel)
-                            .offset(x: -25)
+            VStack(spacing: 15) {
+                InfoButton(mediaCardViewModel: mediaCardViewModel)
+                FavoriteButton(mediaCardViewModel: mediaCardViewModel)
+                RatingButton(mediaCardViewModel: mediaCardViewModel)
+                WatchlistButton(mediaCardViewModel: mediaCardViewModel)
+            }
+        }
+        .onDisappear {
+            mediaCardViewModel.showRatingview = false
+        }
+    }
+}
+
+// MARK: -
+
+struct InfoButton: View {
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+    
+    var body: some View {
+        Button {
+            withAnimation {
+                mediaCardViewModel.showRatingview = false
+            }
+        } label: {
+            Image(systemName: "info.circle.fill")
+                .foregroundStyle(Color.white)
+        }
+    }
+}
+
+struct FavoriteButton: View {
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+    
+    var body: some View {
+        Button {
+            withAnimation {
+                mediaCardViewModel.showRatingview = false
+                mediaCardViewModel.favorie.toggle()
+            }
+        } label: {
+            Image(systemName: mediaCardViewModel.favorie ? "heart.fill" : "heart")
+                .foregroundStyle(Color.pink)
+        }
+    }
+}
+
+struct RatingButton: View {
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+    
+    var body: some View {
+        Button {
+            mediaCardViewModel.showRatingview = true
+        } label: {
+            Image(systemName: "star")
+                .foregroundStyle(Color.yellow)
+                .overlay {
+                    GeometryReader { geo in
+                        Rectangle()
+                            .fill(Color.yellow)
+                            .frame(width: geo.size.width / 5 * CGFloat(mediaCardViewModel.rating))
+                            .mask(alignment: .leading) {
+                                Image(systemName: "star.fill")
+                            }
                     }
-                    
-                    : nil
                 }
-                
-                Button {
-                    WishList.toggle()
-                } label: {
-                    Image(systemName: WishList ?  "bookmark.fill" : "bookmark")
-                        .foregroundStyle(Color.teal)
-                    
+        }
+        .overlay(alignment: .trailing) {
+            if mediaCardViewModel.showRatingview {
+                ZStack {
+                    RatingView(viewModel: mediaCardViewModel)
+                        .offset(x: -25)
                 }
             }
         }
     }
 }
 
-
-#Preview {
-    ZStack{
-        HStack{
-            Spacer()
-            Color.gray
-            Leftbuttons( mediaCardViewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "desciptin ", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
+struct WatchlistButton: View {
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+    
+    var body: some View {
+        Button {
+            withAnimation {
+                mediaCardViewModel.showRatingview = false
+                mediaCardViewModel.watchList.toggle()
+            }
+        } label: {
+            Image(systemName: mediaCardViewModel.watchList ? "bookmark.fill" : "bookmark")
+                .foregroundStyle(Color.teal)
         }
     }
 }
 
- 
+
+#Preview {
+    ZStack {
+        HStack {
+            Spacer()
+            Color.gray
+            Leftbuttons(mediaCardViewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "description", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
+        }
+    }
+}

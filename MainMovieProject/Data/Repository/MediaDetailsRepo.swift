@@ -12,33 +12,26 @@ import UIKit
 
 protocol MediaDetailsRepo{
     func setFavorie(mediaParams: FavoriteMovieDetailsDTO) -> AnyPublisher<Response,NetworkError>
-    func addToWishlist(mediaParams: FavoriteMovieDetailsDTO) -> AnyPublisher<Response,NetworkError>
+    func addToWishList(mediaParams: WatchlistMovieDetailsDTO) -> AnyPublisher<Response, NetworkError>
     func asyncGetMediaPortal(imageString: String) -> AnyPublisher<UIImage?,NetworkError>
     func rateMedia(mediaId: Int, mediaRate: Int) -> AnyPublisher<Response,NetworkError>
 }
-
 
 class MediaDetailsRepoImpl: MediaDetailsRepo{
     func asyncGetMediaPortal(imageString: String) -> AnyPublisher<UIImage?, NetworkingPackage.NetworkError> {
         return MovieNetworkManager.shared.fetchImage(posterPath: imageString)
     }
     
-    func addToWishlist(mediaParams: FavoriteMovieDetailsDTO) -> AnyPublisher<Response, NetworkError> {
-        return MovieNetworkManager.shared.likeMedia(params: FavoriteMovieDetailsDTO(media_id: mediaParams.media_id , media_type: mediaParams.media_type, favorite: mediaParams.favorite).toDictionary())
-    }
-    
-    
     func setFavorie(mediaParams: FavoriteMovieDetailsDTO) -> AnyPublisher<Response, NetworkError> {
-        return    MovieNetworkManager.shared.likeMedia(params: FavoriteMovieDetailsDTO(media_id: mediaParams.media_id , media_type: mediaParams.media_type, favorite: mediaParams.favorite).toDictionary())
+        return    MovieNetworkManager.shared.likeMedia(params: mediaParams.toDictionary())
     }
-    
-    func rating(mediaParams: FavoriteMovieDetailsDTO) -> AnyPublisher<Response, NetworkError> {
-        return MovieNetworkManager.shared.likeMedia(params: FavoriteMovieDetailsDTO(media_id: mediaParams.media_id , media_type: mediaParams.media_type, favorite: mediaParams.favorite).toDictionary())
-    }
-    
-    
+
     func rateMedia(mediaId: Int, mediaRate: Int) -> AnyPublisher<Response,NetworkError> {
         return MovieNetworkManager.shared.rateMedia(queryParams: mediaId, params: ["value": mediaRate])
+    }
+    
+    func addToWishList(mediaParams: WatchlistMovieDetailsDTO) -> AnyPublisher<Response, NetworkError> {
+        return   MovieNetworkManager.shared.addToWishList(params: mediaParams.toDictionary())
     }
    
 }

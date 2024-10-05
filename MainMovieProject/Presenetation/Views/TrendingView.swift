@@ -9,12 +9,12 @@ import SwiftUI
 
 struct TrendingView: View {
     @StateObject var viewModel: TrendingMoviesViewModel
-
+    
     private func updateSelectedStates() {
-            for index in viewModel.mediaCardViewModels.indices {
-                viewModel.mediaCardViewModels[index].showActions = (viewModel.mediaCardViewModels[index].card.id == viewModel.selectedMovieId)
-            }
+        for index in viewModel.mediaCardViewModels.indices {
+            viewModel.mediaCardViewModels[index].showActions = (viewModel.mediaCardViewModels[index].card.id == viewModel.selectedMovieId)
         }
+    }
     
     var body: some View {
         
@@ -26,6 +26,7 @@ struct TrendingView: View {
                         MediaCard(viewModel: mediaViewModel) // Pass the individual view model
                             .onTapGesture {
                                 withAnimation {
+                                    mediaViewModel.showRatingview = false
                                     viewModel.selectedMovieId =  mediaViewModel.card.id
                                     updateSelectedStates()
                                 }
@@ -39,7 +40,7 @@ struct TrendingView: View {
                     }
                 })
             }
-             
+            
             .tabItem {
                 VStack{
                     Image(systemName: "lasso.badge.sparkles")

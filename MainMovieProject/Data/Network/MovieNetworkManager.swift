@@ -102,6 +102,13 @@ public class MovieNetworkManager: AppService {
     
     }
     
+    public func addToWishList(params: [String:Any] ) -> AnyPublisher<Response, NetworkError> {
+        let account_id = "9090719"
+        let endoint = "https://api.themoviedb.org/3/account/\(account_id)/watchlist"
+        return networkManager.request(endoint: endoint,authmethod: .post, params: params)
+    
+    }
+    
 }
 
  

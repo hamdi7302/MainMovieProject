@@ -12,14 +12,25 @@ import Combine
 class TrendingMoviesViewModel: ObservableObject{
     private let getTrendingUseCase: GetTrendingUseCase
     private var cancellables = Set<AnyCancellable>()
+    
     @Published var selectedMovieId: Int? = nil
+   
     @Published var mediaCardViewModels: [MediaCardViewModel] = []
+    
     var mediaRepository: MediaDetailsRepoImpl
     
     init(getTrendingUseCase: GetTrendingUseCase, mediaRepository: MediaDetailsRepoImpl) { // to inject the test here
         self.getTrendingUseCase = getTrendingUseCase
         self.mediaRepository = MediaDetailsRepoImpl()
     }
+    
+     func updateSelectedStates() {
+        
+            for index in mediaCardViewModels.indices {
+                mediaCardViewModels[index].showActions = (mediaCardViewModels[index].card.id == selectedMovieId)
+            }
+        
+        }
     
     func fetchtrendingMovies () {
         getTrendingUseCase.execute(params: .day)

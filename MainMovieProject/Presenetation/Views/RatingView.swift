@@ -10,8 +10,7 @@ import SwiftUI
 struct RatingView: View {
     
     @ObservedObject var viewModel: MediaCardViewModel
-    
-    @State var rating: Int =  3
+    @State var rating: Int =  0
     
     private var starsView: some View {
         HStack{
@@ -21,7 +20,11 @@ struct RatingView: View {
                     .onTapGesture {
                         withAnimation(.easeInOut, {
                             rating = index
-                            viewModel.setRating(index)
+                            viewModel.rating = index
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute: {
+                                viewModel.showRatingview = false
+                            })
+                            
                         })
                     }
             }

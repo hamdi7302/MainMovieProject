@@ -20,7 +20,7 @@ struct MainMovieProjectApp: App {
     
     init() {
         trendingRepoImpl = TrendingMediaReposioryImpl()
-        mediaRepository = MediaDetailsRepoImpl() // Initialize mediaRepository before using it
+        mediaRepository = MediaDetailsRepoImpl()
         getTrendingUseCaseImpl = GetTrendingUseCaseImpl(repository: trendingRepoImpl)
         trendingMoviesViewModel = TrendingMoviesViewModel(getTrendingUseCase: getTrendingUseCaseImpl, mediaRepository: mediaRepository)
     }
@@ -29,7 +29,6 @@ struct MainMovieProjectApp: App {
         
         WindowGroup {
             TrendingView(viewModel: trendingMoviesViewModel)
-            //            TestScreen()
         }
         .environmentObject(genresDataModel)
     }

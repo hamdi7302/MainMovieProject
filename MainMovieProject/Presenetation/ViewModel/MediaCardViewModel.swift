@@ -1,5 +1,5 @@
 //
-//  CollpasedMovieCardViewModel.swift
+//  MediaCardViewModel.swift
 //  MainMovieProject
 //
 //  Created by hamdi on 26/9/2024.
@@ -9,69 +9,123 @@ import Foundation
 import NetworkingPackage
 import UIKit
 import Combine
-import NetworkingPackage
 
- 
+enum MediaCardState {
+    case favorite(Bool)
+    case watchList(Bool)
+    case rating(Int)
+}
+
 class MediaCardViewModel: ObservableObject {
     let card: Movie
     @Published var showActions: Bool
+    @Published var showRatingview: Bool
+    @Published var rating: Int = 0 {
+        didSet {
+            updateState(.rating(rating))
+        }
+    }
+    @Published var showInfoDetails = false
+    @Published var favorie = false {
+        didSet {
+            updateState(.favorite(favorie))
+        }
+    }
+    @Published var watchList = false {
+        didSet {
+            updateState(.watchList(watchList))
+        }
+    }
     @Published var image: UIImage?
-    @Published var title = ""
+    @Published var title: String
     @Published var description: [Int]
-    @Published var releaseDate = ""
+    @Published var releaseDate: String
+    
     private let fetchImageUseCase: FetchImageUseCase
-    private var favoriteUseCase: AddToFavoritesUseCase
-    private var addRatingUseCase: AddRatingUseCase
-    
+    private let favoriteUseCase: AddToFavoritesUseCase
+    private let addRatingUseCase: AddRatingUseCase
+    private let addWatchListUseCase: AddWishListUseCase
     private var cancellables = Set<AnyCancellable>()
-    init (resultCard: Movie,isSelected:Bool, mediaRepository : MediaDetailsRepo ) {
-        card = resultCard
-        showActions = isSelected
-        title = card.originalTitle
-        description = card.genreids
-        releaseDate = card.realeaseDate
-        fetchImageUseCase = FetchImageUseCaseImpl(repo: mediaRepository)
-        favoriteUseCase = AddToFavoritesUseCaseImpl(favoritesRepository: mediaRepository)
-        addRatingUseCase = AddRatingUseCaseImple(ratingRepository: mediaRepository)
-    }
-    
-    func setRating (_ rating: Int){
-        addRatingUseCase.execute(rateMovie: rating, mediaId: card.id).sink { res in
-            
-        } receiveValue: { res in
-            print("rated Successfully") //  make a toast or something
-        }.store(in: &cancellables)
-    }
-    
-    func setFavorite(_ favorite: Bool){
-        
-        favoriteUseCase.execute(movie: FavoriteMovieDetailsDTO(media_id: card.id,
-                                                               media_type: MediaTypeDTO(rawValue: card.mediaType ) ?? .movie,
-                                                                favorite: favorite)).sink { res in
-            
-        } receiveValue: { res in
-            print("Marked Successfullt") //  make a toast or something
-        }.store(in: &cancellables)
 
+    init(resultCard: Movie, isSelected: Bool, mediaRepository: MediaDetailsRepo) {
+        self.card = resultCard
+        self.showActions = isSelected
+        self.showRatingview = false
+        self.title = card.originalTitle
+        self.description = card.genreids
+        self.releaseDate = card.realeaseDate
+        
+        self.fetchImageUseCase = FetchImageUseCaseImpl(repo: mediaRepository)
+        self.favoriteUseCase = AddToFavoritesUseCaseImpl(favoritesRepository: mediaRepository)
+        self.addRatingUseCase = AddRatingUseCaseImpl(ratingRepository: mediaRepository)
+        self.addWatchListUseCase = AddWishListUseCaseImpl(ratingRepository: mediaRepository)
     }
-    
+
+    private func updateState(_ state: MediaCardState) {
+        switch state {
+        case .favorite(let isFavorite):
+            setFavorite(isFavorite)
+        case .watchList(let isWished):
+            setWatchList(isWished)
+        case .rating(let newRating):
+            setRating(newRating)
+        }
+    }
+
+    private func setRating(_ rating: Int) {
+        addRatingUseCase.execute(rateMovie: rating, mediaId: card.id)
+            .sink { completion in
+                // Handle completion (success/error)
+            } receiveValue: { _ in
+                print("Rated Successfully")
+            }
+            .store(in: &cancellables)
+    }
+
+    private func setWatchList(_ watchList: Bool) {
+        let watchListDTO = WatchlistMovieDetailsDTO(media_id: card.id,
+                                                    media_type: MediaTypeDTO(rawValue: card.mediaType) ?? .movie,
+                                                    watchlist: watchList)
+        
+        addWatchListUseCase.execute(watchList: watchListDTO)
+            .sink { completion in
+                // Handle completion (success/error)
+            } receiveValue: { _ in
+                print("WatchList added Successfully")
+            }
+            .store(in: &cancellables)
+    }
+
+    private func setFavorite(_ favorite: Bool) {
+        let favoriteDTO = FavoriteMovieDetailsDTO(media_id: card.id,
+                                                  media_type: MediaTypeDTO(rawValue: card.mediaType) ?? .movie,
+                                                  favorite: favorite)
+        
+        favoriteUseCase.execute(movie: favoriteDTO)
+            .sink { completion in
+                // Handle completion (success/error)
+            } receiveValue: { _ in
+                print("Marked Successfully") // Consider showing a toast or notification
+            }
+            .store(in: &cancellables)
+    }
+
     func executeFetchImage() {
-        
-            fetchImageUseCase.execute(imageString: card.posterPath)
-                .receive(on: DispatchQueue.main)
-                .sink { res in
-                    
-                } receiveValue: { [ weak self] receivedImage in
-                    if let checkedImage = receivedImage {
-                        self?.image = checkedImage
-                    } else {
-                        print("Could not convert data to image.")
-                    }
-                }.store(in: &cancellables)
-        
-        
+        fetchImageUseCase.execute(imageString: card.posterPath)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                // Handle completion (success/error)
+            } receiveValue: { [weak self] receivedImage in
+                if let checkedImage = receivedImage {
+                    self?.image = checkedImage
+                } else {
+                    print("Could not convert data to image.")
+                }
+            }
+            .store(in: &cancellables)
     }
-    func setImageToNil(){
+
+    func setImageToNil() {
         image = nil
     }
 }
