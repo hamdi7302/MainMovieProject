@@ -13,7 +13,7 @@ protocol AddRatingUseCase {
     func execute (rateMovie: Int, mediaId: Int ) -> AnyPublisher<Response, NetworkError>
 }
 
-class AddRatingUseCaseImple: AddRatingUseCase {
+class AddRatingUseCaseImpl: AddRatingUseCase {
     
     private let ratingRepository: MediaDetailsRepo
     
