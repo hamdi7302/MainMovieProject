@@ -17,6 +17,7 @@ struct Leftbuttons: View {
                 FavoriteButton(mediaCardViewModel: mediaCardViewModel)
                 RatingButton(mediaCardViewModel: mediaCardViewModel)
                 WatchlistButton(mediaCardViewModel: mediaCardViewModel)
+                buyRent(mediaCardViewModel: mediaCardViewModel)
             }
         }
         .onDisappear {
@@ -101,6 +102,22 @@ struct WatchlistButton: View {
         } label: {
             Image(systemName: mediaCardViewModel.watchList ? "bookmark.fill" : "bookmark")
                 .foregroundStyle(Color.teal)
+        }
+    }
+}
+
+struct buyRent: View {
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+    
+    var body: some View {
+        Button {
+            withAnimation {
+//                mediaCardViewModel.showRatingview = false
+//                mediaCardViewModel.watchList.toggle()
+            }
+        } label: {
+            Image(systemName: "cart")
+                .foregroundStyle(Color.white)
         }
     }
 }

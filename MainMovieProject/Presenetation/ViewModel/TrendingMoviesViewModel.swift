@@ -7,6 +7,8 @@
 
 import Foundation
 import Combine
+import SwiftUI
+
 
 
 class TrendingMoviesViewModel: ObservableObject{
@@ -22,14 +24,20 @@ class TrendingMoviesViewModel: ObservableObject{
     init(getTrendingUseCase: GetTrendingUseCase, mediaRepository: MediaDetailsRepoImpl) { // to inject the test here
         self.getTrendingUseCase = getTrendingUseCase
         self.mediaRepository = MediaDetailsRepoImpl()
+        removeNotSelectedmovies()
     }
-    
+    func removeNotSelectedmovies () {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5 , execute: { [self] in
+            withAnimation {
+                 mediaCardViewModels.removeAll(where: {$0.card.id != selectedMovieId})
+            }
+        })
+       
+    }
      func updateSelectedStates() {
-        
             for index in mediaCardViewModels.indices {
                 mediaCardViewModels[index].showActions = (mediaCardViewModels[index].card.id == selectedMovieId)
             }
-        
         }
     
     func fetchtrendingMovies () {

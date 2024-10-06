@@ -7,64 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FAD4F1FD-28DD-4E3E-B3D5-77F6822B9464"
+            uuid = "D081A904-BA76-49E9-874C-D4005E872602"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "setImageToNil()"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "trailerVideo()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "79672B44-1616-4631-B9A0-F52A538DDBFA"
+            uuid = "D9438C9B-ADE0-441B-AF23-90EFAD3518B6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "setFavorite(_:)"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "trailerVideo()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "12E4886F-8A3E-4C00-9791-513A2D653A17"
+            uuid = "511E4D34-E635-4FCD-B57B-DE6C71625243"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MainMovieProject/Presenetation/ViewModel/MediaCardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "setFavorite(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7902DC9E-CC0F-4A3E-A040-1758DBD9721D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MainMovieProject/Data/Network/MovieNetworkManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "likeMedia(params:)"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "trailerVideo()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

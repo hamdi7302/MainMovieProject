@@ -40,11 +40,21 @@ class MediaCardViewModel: ObservableObject {
     @Published var title: String
     @Published var description: [Int]
     @Published var releaseDate: String
+    @Published var showVideo: Bool = false {
+        didSet{
+            if showVideo == true {
+                trailerVideo()
+            }
+        }
+    }
+    @Published var videoUrl: String? = nil
+    
     
     private let fetchImageUseCase: FetchImageUseCase
     private let favoriteUseCase: AddToFavoritesUseCase
     private let addRatingUseCase: AddRatingUseCase
     private let addWatchListUseCase: AddWishListUseCase
+    private let fetchTrailersUseCase: FetchTrailersUseCaseImpl
     private var cancellables = Set<AnyCancellable>()
 
     init(resultCard: Movie, isSelected: Bool, mediaRepository: MediaDetailsRepo) {
@@ -59,6 +69,8 @@ class MediaCardViewModel: ObservableObject {
         self.favoriteUseCase = AddToFavoritesUseCaseImpl(favoritesRepository: mediaRepository)
         self.addRatingUseCase = AddRatingUseCaseImpl(ratingRepository: mediaRepository)
         self.addWatchListUseCase = AddWishListUseCaseImpl(ratingRepository: mediaRepository)
+        self.fetchTrailersUseCase = FetchTrailersUseCaseImpl(fetchTrailersRepo: mediaRepository)
+        
     }
 
     private func updateState(_ state: MediaCardState) {
@@ -81,6 +93,29 @@ class MediaCardViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    private func trailerVideo() {
+        fetchTrailersUseCase.execute(fechTrailerFor: card.id)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    // Handle successful completion, if needed
+                    print("Trailer fetch completed successfully.")
+                case .failure(let error):
+                    // Print error message on failure
+                    print("Failed to fetch trailer: \(error.localizedDescription)")
+                }
+            } receiveValue: { [self] res in
+                if let key = res.results.first?.key {
+                    videoUrl = key
+                } else {
+                    print("No trailer found.")
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
 
     private func setWatchList(_ watchList: Bool) {
         let watchListDTO = WatchlistMovieDetailsDTO(media_id: card.id,

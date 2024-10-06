@@ -15,6 +15,7 @@ protocol MediaDetailsRepo{
     func addToWishList(mediaParams: WatchlistMovieDetailsDTO) -> AnyPublisher<Response, NetworkError>
     func asyncGetMediaPortal(imageString: String) -> AnyPublisher<UIImage?,NetworkError>
     func rateMedia(mediaId: Int, mediaRate: Int) -> AnyPublisher<Response,NetworkError>
+    func fetchMediaTrailers(mediaId: Int) -> AnyPublisher<MovieRSDTO, NetworkError>
 }
 
 class MediaDetailsRepoImpl: MediaDetailsRepo{
@@ -32,6 +33,10 @@ class MediaDetailsRepoImpl: MediaDetailsRepo{
     
     func addToWishList(mediaParams: WatchlistMovieDetailsDTO) -> AnyPublisher<Response, NetworkError> {
         return   MovieNetworkManager.shared.addToWishList(params: mediaParams.toDictionary())
+    }
+    
+    func fetchMediaTrailers(mediaId: Int) -> AnyPublisher<MovieRSDTO, NetworkError> {
+        return   MovieNetworkManager.shared.fetchMediaUrls(mediaId: mediaId)
     }
    
 }

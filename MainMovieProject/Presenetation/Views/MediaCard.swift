@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct MediaCard: View {
     
     @EnvironmentObject var genreDataModel: GenreDataModel
     @StateObject var viewModel: MediaCardViewModel
+    @State private var scale: CGFloat = 1.0
     
     func getDescription() -> String{
         let  stringGneres: [String]  = viewModel.description.map { index in
@@ -36,7 +38,8 @@ struct MediaCard: View {
                         Color.white.opacity(0.2)
                     )
                     .cornerRadius(12)
-                 
+                
+                
                 // Clips to bounds
             } else {
                 LinearGradient(gradient: Gradient(colors: [.gray, .white]),
@@ -49,14 +52,34 @@ struct MediaCard: View {
                     Image(uiImage: image)
                         .resizable( resizingMode: .stretch)
                         .imageScale(.large)
-                        .cornerRadius(12)
-                         
-                   
+                    
+                        .overlay {
+                            if viewModel.showActions {
+                                ZStack {
+                                    Image(systemName: "play.circle")
+                                        .resizable()
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                        .scaleEffect(scale)
+                                        .onAppear {
+                                            withAnimation(
+                                                Animation.smooth(duration: 1).repeatForever(autoreverses: true)
+                                            ) {scale = 1.1}
+                                        }.onTapGesture {
+                                            viewModel.showVideo = true
+                                        }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color.black.opacity(0.3)) // Add if you want to ensure it's filling all space
+                                
+                            }
+                        }   .cornerRadius(12)
+                    
+                    
                 }else {
                     Rectangle()
                         .foregroundStyle(Color.gray).overlay {
                             ProgressView()
-                              
+                            
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             
                         }.cornerRadius(12)
@@ -97,6 +120,12 @@ struct MediaCard: View {
         .onDisappear {
             viewModel.setImageToNil()
         }
+        .sheet(isPresented: $viewModel.showVideo, content: {
+        
+            YouTubePlayer(videoID: viewModel.videoUrl ?? "")
+            
+            }
+        )
     }
 }
 

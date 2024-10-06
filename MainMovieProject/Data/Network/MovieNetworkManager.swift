@@ -42,6 +42,7 @@ protocol AppService {
     func fetchAllTrending (trendingType: TrendingTypeDTO) -> AnyPublisher<TrendingMoviesDTO,NetworkError>
     func fetchImage(posterPath : String) -> AnyPublisher <UIImage?,NetworkError>
     func fetchMoviesGenre(forMovie: GenreType) -> AnyPublisher<Genres,NetworkError>
+    func fetchMediaUrls(mediaId: Int) -> AnyPublisher<MovieRSDTO, NetworkError>
 }
 
 public class MovieNetworkManager: AppService {
@@ -108,6 +109,14 @@ public class MovieNetworkManager: AppService {
         return networkManager.request(endoint: endoint,authmethod: .post, params: params)
     
     }
+    
+    
+    public func fetchMediaUrls(mediaId: Int) -> AnyPublisher<MovieRSDTO, NetworkError> {
+            let endoint = "https://api.themoviedb.org/3/movie/\(mediaId)/videos"
+        return networkManager.request(endoint: endoint)
+    
+    }
+    
     
 }
 
