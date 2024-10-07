@@ -13,23 +13,11 @@ struct MainMovieProjectApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @ObservedObject var genresDataModel = GenreDataModel()
-    
-    let trendingRepoImpl: TrendingMediaReposioryImpl
-    let getTrendingUseCaseImpl: GetTrendingUseCaseImpl
-    let trendingMoviesViewModel: TrendingMoviesViewModel
-    let mediaRepository: MediaDetailsRepoImpl
-    
-    init() {
-        trendingRepoImpl = TrendingMediaReposioryImpl()
-        mediaRepository = MediaDetailsRepoImpl()
-        getTrendingUseCaseImpl = GetTrendingUseCaseImpl(repository: trendingRepoImpl)
-        trendingMoviesViewModel = TrendingMoviesViewModel(getTrendingUseCase: getTrendingUseCaseImpl, mediaRepository: mediaRepository)
-    }
-    
+
     var body: some Scene {
         
         WindowGroup {
-            TrendingView(viewModel: trendingMoviesViewModel)
+            MainView()
         }
         .environmentObject(genresDataModel)
     }

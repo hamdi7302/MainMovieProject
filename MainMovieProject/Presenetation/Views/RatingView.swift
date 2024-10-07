@@ -31,7 +31,7 @@ struct RatingView: View {
         }
     }
     
-    private var starViewMask : some View {
+    private var starViewMask: some View {
         GeometryReader(content: { geometry in
             Rectangle()
                 .fill(Color.yellow)

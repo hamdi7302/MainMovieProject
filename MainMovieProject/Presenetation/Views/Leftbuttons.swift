@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct Leftbuttons: View {
+struct LeftButtons: View {
     
     @ObservedObject var mediaCardViewModel: MediaCardViewModel
     
@@ -128,7 +128,7 @@ struct buyRent: View {
         HStack {
             Spacer()
             Color.gray
-            Leftbuttons(mediaCardViewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "description", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
+            LeftButtons(mediaCardViewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "description", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
         }
     }
 }
