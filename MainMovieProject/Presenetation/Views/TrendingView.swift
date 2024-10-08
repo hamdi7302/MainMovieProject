@@ -32,11 +32,11 @@ struct TrendingView: View {
                 }
             }
             .padding(.horizontal,30)
-            .onAppear(perform: {
-                withAnimation {
-                    viewModel.fetchtrendingMovies()
-                }
-            })
+//            .onAppear(perform: {
+//                withAnimation {
+//
+//                }
+//            })
         }
         
    

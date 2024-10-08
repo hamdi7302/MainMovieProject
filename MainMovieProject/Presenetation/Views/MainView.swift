@@ -33,13 +33,13 @@ struct MainView: View {
                             Text("Trending")
                         }
                     }
-                    .tag(1)
+                    .tag(0)
                 Text("Popular").tabItem {
                     VStack{
                         Image(systemName: "lasso")
                         Text("Popular")
                     }
-                }.tag(0)
+                }.tag(1)
                 Text("Search").tabItem {
                     VStack{
                         Image(systemName: "magnifyingglass")

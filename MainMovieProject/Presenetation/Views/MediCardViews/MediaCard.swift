@@ -19,9 +19,12 @@ struct MediaCard: View {
             BackgroundImage(image: viewModel.image)
             
             HStack {
-                MediaImage(viewModel: viewModel, scale: $scale)
-                
-                MediaDetails(viewModel: viewModel)
+                if !(viewModel.showVideo){
+                    MediaImage(viewModel: viewModel)
+                    MediaDetails(viewModel: viewModel)
+                }else {
+                    YouTubePlayer(videoID: viewModel.videoUrl ?? "")
+                }
             }
             .aspectRatio(1.5, contentMode: .fit)
             .cornerRadius(12)
@@ -37,9 +40,6 @@ struct MediaCard: View {
         .onDisappear {
             viewModel.setImageToNil()
         }
-        .fullScreenCover(isPresented: $viewModel.showVideo, content: {
-            YouTubePlayer(videoID: viewModel.videoUrl ?? "").ignoresSafeArea()
-        })
     }
 }
 

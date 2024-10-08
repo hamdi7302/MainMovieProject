@@ -18,7 +18,14 @@ enum MediaCardState {
 
 class MediaCardViewModel: ObservableObject {
     let card: Movie
-    @Published var showActions: Bool
+    @Published var showActions: Bool {
+        didSet {
+            if !showActions {
+                showVideo = false
+                videoUrl = nil
+            }
+        }
+    }
     @Published var showRatingview: Bool
     @Published var rating: Int = 0 {
         didSet {
@@ -95,25 +102,29 @@ class MediaCardViewModel: ObservableObject {
     }
     
     private func trailerVideo() {
+        
         fetchTrailersUseCase.execute(fechTrailerFor: card.id)
             .receive(on: DispatchQueue.main)
             .sink { completion in
+                
                 switch completion {
                 case .finished:
-                    // Handle successful completion, if needed
                     print("Trailer fetch completed successfully.")
                 case .failure(let error):
-                    // Print error message on failure
                     print("Failed to fetch trailer: \(error.localizedDescription)")
                 }
-            } receiveValue: { [self] res in
+                
+            } receiveValue: { [weak self] res in
+                
                 if let key = res.results.first?.key {
-                    videoUrl = key
+                    self?.videoUrl = key
                 } else {
                     print("No trailer found.")
                 }
+                
             }
             .store(in: &cancellables)
+        
     }
     
 

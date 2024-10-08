@@ -8,20 +8,21 @@ import SwiftUI
 
 struct MediaImage: View {
     @ObservedObject var viewModel: MediaCardViewModel
-    @Binding var scale: CGFloat
     
     var body: some View {
+        
+        
         if let image = viewModel.image {
             Image(uiImage: image)
                 .resizable()
                 .imageScale(.large)
                 .overlay {
                     if viewModel.showActions {
-                        PlayButtonOverlay(scale: $scale)
+                        PlayButtonOverlay(viewModel: viewModel)
                     }
                 }
                 .cornerRadius(12)
-        } else {
+        }else{
             Rectangle()
                 .foregroundStyle(Color.gray)
                 .overlay {
@@ -34,7 +35,8 @@ struct MediaImage: View {
 }
 
 struct PlayButtonOverlay: View {
-    @Binding var scale: CGFloat
+    @State var scale: CGFloat = 1
+    @ObservedObject var viewModel: MediaCardViewModel
     
     var body: some View {
         ZStack {
@@ -46,7 +48,9 @@ struct PlayButtonOverlay: View {
                     withAnimation(Animation.smooth(duration: 1).repeatForever(autoreverses: true)) {
                         scale = 1.1
                     }
-                }
+                }.onTapGesture(perform: {
+                    viewModel.showVideo =  true
+                })
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black.opacity(0.3))
@@ -54,6 +58,8 @@ struct PlayButtonOverlay: View {
 }
 
 
+
+
 #Preview {
-    MediaImage(viewModel: MediaCardViewModel(resultCard: Movie(id: 12, originalTitle: "", overview: "", popularity: 10, realeaseDate: "", mediaType: "", genreids: [], posterPath: ""), isSelected: false, mediaRepository: MediaDetailsRepoImpl()), scale: .constant(1.0))
+    MediaImage(viewModel: MediaCardViewModel(resultCard: Movie(id: 12, originalTitle: "", overview: "", popularity: 10, realeaseDate: "", mediaType: "", genreids: [], posterPath: ""), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
 }

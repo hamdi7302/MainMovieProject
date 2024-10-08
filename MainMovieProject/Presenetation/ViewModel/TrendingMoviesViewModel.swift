@@ -24,6 +24,7 @@ class TrendingMoviesViewModel: ObservableObject{
     init(getTrendingUseCase: GetTrendingUseCase, mediaRepository: MediaDetailsRepoImpl) { // to inject the test here
         self.getTrendingUseCase = getTrendingUseCase
         self.mediaRepository = MediaDetailsRepoImpl()
+        fetchtrendingMovies()
 //        removeNotSelectedmovies()
     }
 //    func removeNotSelectedmovies () {
