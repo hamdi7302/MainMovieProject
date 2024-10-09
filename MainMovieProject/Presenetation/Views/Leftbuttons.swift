@@ -10,10 +10,13 @@ struct LeftButtons: View {
     
     @ObservedObject var mediaCardViewModel: MediaCardViewModel
     
+
+    
     var body: some View {
         VStack {
             VStack(spacing: 15) {
-                InfoButton(mediaCardViewModel: mediaCardViewModel)
+                InfoButton(mediaCardViewModel:  mediaCardViewModel)
+                RateButton(mediaCardViewModel: mediaCardViewModel)
                 FavoriteButton(mediaCardViewModel: mediaCardViewModel)
                 RatingButton(mediaCardViewModel: mediaCardViewModel)
                 WatchlistButton(mediaCardViewModel: mediaCardViewModel)
@@ -40,6 +43,18 @@ struct InfoButton: View {
             Image(systemName: "info.circle.fill")
                 .foregroundStyle(Color.white)
         }
+    }
+}
+
+
+struct RateButton: View {
+    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+    var body: some View {
+        Text(mediaCardViewModel.rate?.0 ?? "A+")
+            .font(.caption)
+            .fontWeight(.bold)
+            .multilineTextAlignment(.leading)
+            .foregroundStyle(mediaCardViewModel.rate?.1 ?? .green)
     }
 }
 
@@ -112,8 +127,8 @@ struct buyRent: View {
     var body: some View {
         Button {
             withAnimation {
-//                mediaCardViewModel.showRatingview = false
-//                mediaCardViewModel.watchList.toggle()
+                //                mediaCardViewModel.showRatingview = false
+                //                mediaCardViewModel.watchList.toggle()
             }
         } label: {
             Image(systemName: "cart")
@@ -123,12 +138,15 @@ struct buyRent: View {
 }
 
 
+
+
+
 #Preview {
     ZStack {
         HStack {
             Spacer()
             Color.gray
-            LeftButtons(mediaCardViewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "description", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
+            LeftButtons(mediaCardViewModel: MediaCardViewModel(index: 3, resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "description", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: "", vote_average: 10), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
         }
     }
 }

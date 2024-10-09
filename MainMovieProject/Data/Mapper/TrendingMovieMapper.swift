@@ -22,7 +22,8 @@ struct MovieMapper {
               realeaseDate: moviesDTO.releaseDate,
               mediaType: convertMediaType(media: moviesDTO.mediaType).rawValue,
               genreids: moviesDTO.genreIDS,
-              posterPath: moviesDTO.posterPath)
+              posterPath: moviesDTO.posterPath, 
+              vote_average: moviesDTO.voteAverage)
         
     }
     

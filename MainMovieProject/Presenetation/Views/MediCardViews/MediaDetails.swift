@@ -30,9 +30,10 @@ struct MediaDetails: View {
         .frame(maxWidth: .infinity)
         .foregroundStyle(Color.black)
         .padding(.vertical)
+       
     }
 }
 
 #Preview {
-    MediaDetails(viewModel: MediaCardViewModel(resultCard: Movie(id: 12, originalTitle: "Movie Title", overview: "This is a test overview for the movie.", popularity: 10, realeaseDate: "2023-01-01", mediaType: "movie", genreids: [], posterPath: ""), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
+    MediaDetails(viewModel: MediaCardViewModel(index: 2, resultCard: Movie(id: 12, originalTitle: "Movie Title", overview: "This is a test overview for the movie.", popularity: 10, realeaseDate: "2023-01-01", mediaType: "movie", genreids: [], posterPath: "", vote_average: 10), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
 }

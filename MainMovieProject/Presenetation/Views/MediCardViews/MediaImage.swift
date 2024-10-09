@@ -20,8 +20,11 @@ struct MediaImage: View {
                     if viewModel.showActions {
                         PlayButtonOverlay(viewModel: viewModel)
                     }
+                    
                 }
                 .cornerRadius(12)
+              
+            
         }else{
             Rectangle()
                 .foregroundStyle(Color.gray)
@@ -56,10 +59,6 @@ struct PlayButtonOverlay: View {
         .background(Color.black.opacity(0.3))
     }
 }
-
-
-
-
 #Preview {
-    MediaImage(viewModel: MediaCardViewModel(resultCard: Movie(id: 12, originalTitle: "", overview: "", popularity: 10, realeaseDate: "", mediaType: "", genreids: [], posterPath: ""), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
+    MediaImage(viewModel: MediaCardViewModel(index: 5, resultCard: Movie(id: 12, originalTitle: "", overview: "", popularity: 10, realeaseDate: "", mediaType: "", genreids: [], posterPath: "", vote_average: 10), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
 }

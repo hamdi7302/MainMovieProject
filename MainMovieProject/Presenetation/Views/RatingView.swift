@@ -55,7 +55,7 @@ struct RatingView: View {
 #Preview {
     ZStack{
         Color.cyan.ignoresSafeArea()
-        RatingView(viewModel: MediaCardViewModel(resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "desciptin ", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: ""), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
+        RatingView(viewModel: MediaCardViewModel(index: 4, resultCard: Movie(id: 123, originalTitle: "John WXick", overview: "desciptin ", popularity: 99, realeaseDate: "19/2/2025", mediaType: "movie", genreids: [], posterPath: "", vote_average: 10), isSelected: true, mediaRepository: MediaDetailsRepoImpl()))
              
     }
 }

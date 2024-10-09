@@ -20,6 +20,7 @@ struct Movie {
     let mediaType: String
     let genreids: [Int]
     let posterPath: String
+    let vote_average: Double
 }
 
 enum MediaType: String {

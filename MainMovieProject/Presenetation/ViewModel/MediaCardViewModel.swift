@@ -9,6 +9,7 @@ import Foundation
 import NetworkingPackage
 import UIKit
 import Combine
+import SwiftUI
 
 enum MediaCardState {
     case favorite(Bool)
@@ -17,6 +18,7 @@ enum MediaCardState {
 }
 
 class MediaCardViewModel: ObservableObject {
+    let index: Int
     let card: Movie
     @Published var showActions: Bool {
         didSet {
@@ -55,6 +57,7 @@ class MediaCardViewModel: ObservableObject {
         }
     }
     @Published var videoUrl: String? = nil
+    @Published var rate: (String,Color)?
     
     
     private let fetchImageUseCase: FetchImageUseCase
@@ -64,7 +67,25 @@ class MediaCardViewModel: ObservableObject {
     private let fetchTrailersUseCase: FetchTrailersUseCaseImpl
     private var cancellables = Set<AnyCancellable>()
 
-    init(resultCard: Movie, isSelected: Bool, mediaRepository: MediaDetailsRepo) {
+    
+    func getRate() -> (String,Color){
+        switch card.vote_average * 10 {
+        case 0...30:
+                return ("F-",.red)
+        case 31...50:
+            return ("D-",.red)
+        case 51...60:
+            return ("C+",.orange)
+        case 61...75:
+            return ("B+",.green)
+        default :
+            return  ("A+",.green)
+        }
+        
+    }
+    
+    init(index: Int, resultCard: Movie, isSelected: Bool, mediaRepository: MediaDetailsRepo) {
+        self.index = index
         self.card = resultCard
         self.showActions = isSelected
         self.showRatingview = false
@@ -77,6 +98,8 @@ class MediaCardViewModel: ObservableObject {
         self.addRatingUseCase = AddRatingUseCaseImpl(ratingRepository: mediaRepository)
         self.addWatchListUseCase = AddWishListUseCaseImpl(ratingRepository: mediaRepository)
         self.fetchTrailersUseCase = FetchTrailersUseCaseImpl(fetchTrailersRepo: mediaRepository)
+    
+        rate = getRate()
         
     }
 

@@ -34,6 +34,15 @@ struct MediaCard: View {
                 LeftButtons(mediaCardViewModel: viewModel).offset(x:27)
             }
         }
+        .overlay(alignment: .leading) {
+            if viewModel.showActions {
+                Image(systemName: "\(viewModel.index + 1).lane")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                .offset(x: -40, y: 0)
+            }
+        }
+   
         .onAppear(perform: {
             viewModel.executeFetchImage()
         })
@@ -45,7 +54,7 @@ struct MediaCard: View {
 
 
 #Preview {
-    MediaCard(viewModel: MediaCardViewModel(resultCard: Movie(id: 12, originalTitle: "Sample Movie", overview: "A thrilling journey of adventure and discovery.", popularity: 8.5, realeaseDate: "2024-10-07", mediaType: MediaType.movie.rawValue, genreids: [], posterPath: ""), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
+    MediaCard(viewModel: MediaCardViewModel(index: 1, resultCard: Movie(id: 12, originalTitle: "Sample Movie", overview: "A thrilling journey of adventure and discovery.", popularity: 8.5, realeaseDate: "2024-10-07", mediaType: MediaType.movie.rawValue, genreids: [], posterPath: "", vote_average: 10), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
 }
 
 
