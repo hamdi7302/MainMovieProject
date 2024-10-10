@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+
+class DIContainer {
+    // This class is responsible for managing dependency injection and object creation
+    func makeTrendingViewModel() -> TrendingMoviesViewModel {
+        let repository = TrendingMediaRepositoryImpl()
+        let useCase = GetTrendingUseCaseImpl(repository: repository)
+        let mediaRepository = MediaDetailsRepoImpl()
+        return TrendingMoviesViewModel(getTrendingUseCase: useCase, mediaRepository: mediaRepository)
+    }
+    
+    // You can add more factory methods for other view models if needed
+}

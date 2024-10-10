@@ -42,10 +42,10 @@ class TrendingMoviesViewModel: ObservableObject{
                 }
             } receiveValue: { [weak self] movies in
                 guard let self = self else { return }
-                selectedMovieId = movies.first?.id
+                
                 mediaCardViewModels = movies.enumerated().map({MediaCardViewModel(index: $0, resultCard: $1,
                                                                                   isSelected: $0 == 0, mediaRepository: self.mediaRepository)})
-                 
+                selectedMovieId = movies.first?.id
             }
             .store(in: &cancellables)
     }

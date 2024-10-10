@@ -29,8 +29,8 @@ struct TrendingView: View {
                         MediaCard(viewModel: mediaViewModel)
                             .onTapGesture {
                                 withAnimation {
+                                    viewModel.selectedMovieId = mediaViewModel.card.id
                                     mediaViewModel.showRatingview = false
-                                    viewModel.selectedMovieId =  mediaViewModel.card.id
                                     updateSelectedStates()
                                 }
                             }

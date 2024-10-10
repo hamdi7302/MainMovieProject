@@ -13,11 +13,11 @@ struct MainMovieProjectApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @ObservedObject var genresDataModel = GenreDataModel()
-
+    let container =  DIContainer()
     var body: some Scene {
         
         WindowGroup {
-            MainView()
+            MainView(container: container)
         }
         .environmentObject(genresDataModel)
     }

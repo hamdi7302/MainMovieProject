@@ -11,7 +11,7 @@ import AVKit
 struct MediaCard: View {
     
     @EnvironmentObject var genreDataModel: GenreDataModel
-    @StateObject var viewModel: MediaCardViewModel
+    @ObservedObject var viewModel: MediaCardViewModel
     @State private var scale: CGFloat = 1.0
     
     var body: some View {

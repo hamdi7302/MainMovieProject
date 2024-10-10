@@ -15,7 +15,7 @@ protocol TrendingMediaRerpository {
 }
 
 
-struct TrendingMediaReposioryImpl: TrendingMediaRerpository {
+struct TrendingMediaRepositoryImpl: TrendingMediaRerpository {
   
     func getTrendingMedia(trendingType: TrendingTypeDTO) -> AnyPublisher<[Movie],NetworkError> {
         MovieNetworkManager.shared.fetchAllTrending(trendingType: .day)

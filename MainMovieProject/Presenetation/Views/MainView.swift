@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// Enum for navigation destinations, if you plan to add more in the future.
 enum NavigationDestinations: String, CaseIterable, Hashable {
     case details
 }
@@ -56,27 +55,8 @@ struct MainView: View {
     }
 }
 
-
-
-
-
- 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView(container: DIContainer())
     }
 }
-
-struct PopularView: View {
-    var body: some View {
-        Text("poular")
-    }
-}
-struct MoreView: View {
-    var body: some View {
-        Text("poular")
-    }
-}
-
-
-
