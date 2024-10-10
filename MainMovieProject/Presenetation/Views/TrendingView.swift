@@ -17,29 +17,28 @@ struct TrendingView: View {
     }
     
     var body: some View {
-        
-        ScrollView (showsIndicators: false) {
-            LazyVStack(spacing: 12 ){
-                ForEach(viewModel.mediaCardViewModels, id: \.card.id) { mediaViewModel in
-                    MediaCard(viewModel: mediaViewModel) // Pass the individual view model
-                        .onTapGesture {
-                            withAnimation {
-                                mediaViewModel.showRatingview = false
-                                viewModel.selectedMovieId =  mediaViewModel.card.id
-                                updateSelectedStates()
+        VStack(alignment:.leading){
+            Text("Trending")
+                .multilineTextAlignment(.leading)
+                .font(.headline)
+                .foregroundStyle(Color.white)
+                .padding()
+            ScrollView (showsIndicators: false) {
+                LazyVStack(spacing: 12 ){
+                    ForEach(viewModel.mediaCardViewModels, id: \.card.id) { mediaViewModel in
+                        MediaCard(viewModel: mediaViewModel)
+                            .onTapGesture {
+                                withAnimation {
+                                    mediaViewModel.showRatingview = false
+                                    viewModel.selectedMovieId =  mediaViewModel.card.id
+                                    updateSelectedStates()
+                                }
                             }
-                        }
+                    }
                 }
+                .padding(.horizontal,30)
             }
-            .padding(.horizontal,30)
-//            .onAppear(perform: {
-//                withAnimation {
-//
-//                }
-//            })
         }
-        
-   
     }
 }
 

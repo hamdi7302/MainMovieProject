@@ -15,6 +15,7 @@ struct MainView: View {
     let mediaRepository: MediaDetailsRepoImpl
     
     @State var selection: Int = 0
+    @State var visibility: Visibility = .hidden
     
     init() {
         trendingRepoImpl = TrendingMediaReposioryImpl()
@@ -54,6 +55,31 @@ struct MainView: View {
                     }
                 }.tag(3)
             }
+            
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Image(systemName: "doc.text.magnifyingglass")
+                           
+                        Text("Search in")
+                        Spacer()
+                        Image(systemName: "person.crop.circle.fill")
+                            
+                    }.padding(.horizontal,20)
+                   
+                    .background(
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.2)) //
+                            .frame(height: 40)
+                            .cornerRadius(8)
+                    )
+                    .padding( 20)
+                    
+                }
+            }.navigationBarTitleDisplayMode(.inline)
+                .toolbar(.automatic, for: .navigationBar)
+
+ 
         }
     }
 }
