@@ -17,7 +17,6 @@
 		36759C4A2CAABB5B007F36DB /* AddFavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36759C492CAABB5B007F36DB /* AddFavoriteUseCase.swift */; };
 		36759C4C2CAABB71007F36DB /* AddRatingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36759C4B2CAABB71007F36DB /* AddRatingUseCase.swift */; };
 		36759C4E2CAABB7E007F36DB /* FetchImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36759C4D2CAABB7E007F36DB /* FetchImageUseCase.swift */; };
-		36759C502CAB1B2C007F36DB /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36759C4F2CAB1B2C007F36DB /* TestScreen.swift */; };
 		367A548B2CB457C8005EA63F /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A548A2CB457C8005EA63F /* BackgroundImage.swift */; };
 		367A548D2CB457FD005EA63F /* MediaImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A548C2CB457FD005EA63F /* MediaImage.swift */; };
 		367A548F2CB45829005EA63F /* MediaDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A548E2CB45829005EA63F /* MediaDetails.swift */; };
@@ -74,7 +73,6 @@
 		36759C492CAABB5B007F36DB /* AddFavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteUseCase.swift; sourceTree = "<group>"; };
 		36759C4B2CAABB71007F36DB /* AddRatingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRatingUseCase.swift; sourceTree = "<group>"; };
 		36759C4D2CAABB7E007F36DB /* FetchImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImageUseCase.swift; sourceTree = "<group>"; };
-		36759C4F2CAB1B2C007F36DB /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
 		367A548A2CB457C8005EA63F /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		367A548C2CB457FD005EA63F /* MediaImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaImage.swift; sourceTree = "<group>"; };
 		367A548E2CB45829005EA63F /* MediaDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetails.swift; sourceTree = "<group>"; };
@@ -220,10 +218,8 @@
 		363BFD172CB8863800984278 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				367A54902CB45A44005EA63F /* MainView.swift */,
 				36E3D8D92CB8877C00FE87A3 /* ToolbarView.swift */,
-				36E3D8DB2CB887AD00FE87A3 /* SearchableView.swift */,
-				36E3D8DD2CB887F900FE87A3 /* PopularView.swift */,
-				36E3D8DF2CB8880C00FE87A3 /* MoreView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -242,7 +238,6 @@
 			children = (
 				3669EB712CA9A7950039A966 /* TrendingMoviesViewModel.swift */,
 				36E48CE42CA5F3720099622D /* MediaCardViewModel.swift */,
-				36759C4F2CAB1B2C007F36DB /* TestScreen.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -251,8 +246,10 @@
 			isa = PBXGroup;
 			children = (
 				363BFD172CB8863800984278 /* MainView */,
-				367A54902CB45A44005EA63F /* MainView.swift */,
 				36E48CB72CA5F1480099622D /* TrendingView.swift */,
+				36E3D8DD2CB887F900FE87A3 /* PopularView.swift */,
+				36E3D8DB2CB887AD00FE87A3 /* SearchableView.swift */,
+				36E3D8DF2CB8880C00FE87A3 /* MoreView.swift */,
 				367A54892CB457AD005EA63F /* MediCardViews */,
 				36E48CE22CA5F31D0099622D /* Leftbuttons.swift */,
 				369CF7372CB00D4300A5CAB4 /* RatingView.swift */,
@@ -474,7 +471,6 @@
 				36759C4A2CAABB5B007F36DB /* AddFavoriteUseCase.swift in Sources */,
 				36D23EC12CA9A05900088540 /* TrendingMovieMapper.swift in Sources */,
 				36E48CB82CA5F1480099622D /* TrendingView.swift in Sources */,
-				36759C502CAB1B2C007F36DB /* TestScreen.swift in Sources */,
 				36E48CB62CA5F1480099622D /* MainMovieProjectApp.swift in Sources */,
 				369CF7442CB2FD1F00A5CAB4 /* Youtubeplayer.swift in Sources */,
 				3669EB752CA9AD2F0039A966 /* TrendingMediaRerpository.swift in Sources */,
