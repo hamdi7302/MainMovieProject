@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchableView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var searchableText = ""
 
     var body: some View {
@@ -24,6 +25,14 @@ struct SearchableView: View {
                         .padding()
                     }
                 }
+        }
+        .navigationBarBackButtonHidden()
+        .toolbar{
+            ToolbarItem(placement: .topBarLeading) {
+                Image(systemName: "xmark").onTapGesture {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
         }
     }
 }
