@@ -7,83 +7,76 @@
 
 import SwiftUI
 
+// Enum for navigation destinations, if you plan to add more in the future.
+enum NavigationDestinations: String, CaseIterable, Hashable {
+    case details
+}
+
 struct MainView: View {
-    
-    let trendingRepoImpl: TrendingMediaReposioryImpl
-    let getTrendingUseCaseImpl: GetTrendingUseCaseImpl
-    let trendingMoviesViewModel: TrendingMoviesViewModel
-    let mediaRepository: MediaDetailsRepoImpl
-    
-    @State var selection: Int = 0
-    @State var visibility: Visibility = .hidden
-    
-    init() {
-        trendingRepoImpl = TrendingMediaReposioryImpl()
-        mediaRepository = MediaDetailsRepoImpl()
-        getTrendingUseCaseImpl = GetTrendingUseCaseImpl(repository: trendingRepoImpl)
-        trendingMoviesViewModel = TrendingMoviesViewModel(getTrendingUseCase: getTrendingUseCaseImpl, mediaRepository: mediaRepository)
+    let container: DIContainer
+    @StateObject var trendingViewModel: TrendingMoviesViewModel
+
+    init(container: DIContainer) {
+        self.container = container
+        _trendingViewModel = StateObject(wrappedValue: container.makeTrendingViewModel())
     }
-    
+
     var body: some View {
-        NavigationView {  // Wrap in NavigationView to help manage state
-            TabView(selection: $selection) {
-                TrendingView(viewModel: trendingMoviesViewModel)
-                    .tabItem {
-                        VStack{
-                            Image(systemName: "lasso.badge.sparkles")
-                            Text("Trending")
+        NavigationStack {
+            VStack {
+                TabView {
+                    TrendingView(viewModel: trendingViewModel)
+                        .tabItem {
+                            Label("Trending", systemImage: "lasso.badge.sparkles")
                         }
-                    }
-                    .tag(0)
-                Text("Popular").tabItem {
-                    VStack{
-                        Image(systemName: "lasso")
-                        Text("Popular")
-                    }
-                }.tag(1)
-                Text("Search").tabItem {
-                    VStack{
-                        Image(systemName: "magnifyingglass")
-                        Text("Search")
-                    }
-                }.tag(2)
-                
-                Text("More").tabItem {
-                    VStack{
-                        Image(systemName: "ellipsis")
-                        Text("More")
-                    }
-                }.tag(3)
+                        .tag(0)
+                    
+                    PopularView()
+                        .tabItem {
+                            Label("Popular", systemImage: "lasso")
+                        }
+                        .tag(1)
+                    MoreView()
+                        .tabItem {
+                            Label("More", systemImage: "ellipsis")
+                        }
+                        .tag(3)
+                }
             }
-            
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    HStack {
-                        Image(systemName: "doc.text.magnifyingglass")
-                           
-                        Text("Search in")
-                        Spacer()
-                        Image(systemName: "person.crop.circle.fill")
-                            
-                    }.padding(.horizontal,20)
-                   
-                    .background(
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.2)) //
-                            .frame(height: 40)
-                            .cornerRadius(8)
-                    )
-                    .padding( 20)
-                    
+                    ToolbarView()
                 }
-            }.navigationBarTitleDisplayMode(.inline)
-                .toolbar(.automatic, for: .navigationBar)
-
- 
+            }
+            .navigationDestination(for: String.self) { string in
+                SearchableView()
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
 
-#Preview {
-    MainView()
+
+
+
+
+ 
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView(container: DIContainer())
+    }
 }
+
+struct PopularView: View {
+    var body: some View {
+        Text("poular")
+    }
+}
+struct MoreView: View {
+    var body: some View {
+        Text("poular")
+    }
+}
+
+
+
