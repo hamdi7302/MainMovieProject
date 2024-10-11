@@ -16,11 +16,16 @@ struct LeftButtons: View {
         VStack {
             VStack(spacing: 15) {
                 InfoButton(mediaCardViewModel:  mediaCardViewModel)
-                RateButton(mediaCardViewModel: mediaCardViewModel)
+//                RateButton(mediaCardViewModel: mediaCardViewModel)
                 FavoriteButton(mediaCardViewModel: mediaCardViewModel)
                 RatingButton(mediaCardViewModel: mediaCardViewModel)
                 WatchlistButton(mediaCardViewModel: mediaCardViewModel)
+              
+                     
                 buyRent(mediaCardViewModel: mediaCardViewModel)
+            
+                
+                    
             }
         }
         .onDisappear {
@@ -47,16 +52,16 @@ struct InfoButton: View {
 }
 
 
-struct RateButton: View {
-    @ObservedObject var mediaCardViewModel: MediaCardViewModel
-    var body: some View {
-        Text(mediaCardViewModel.rate?.0 ?? "A+")
-            .font(.caption)
-            .fontWeight(.bold)
-            .multilineTextAlignment(.leading)
-            .foregroundStyle(mediaCardViewModel.rate?.1 ?? .green)
-    }
-}
+//struct RateButton: View {
+//    @ObservedObject var mediaCardViewModel: MediaCardViewModel
+//    var body: some View {
+//        Text(mediaCardViewModel.rate?.0 ?? "A+")
+//            .font(.caption)
+//            .fontWeight(.bold)
+//            .multilineTextAlignment(.leading)
+//            .foregroundStyle(mediaCardViewModel.rate?.1 ?? .green)
+//    }
+//}
 
 struct FavoriteButton: View {
     @ObservedObject var mediaCardViewModel: MediaCardViewModel

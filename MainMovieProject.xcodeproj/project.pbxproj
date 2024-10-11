@@ -43,6 +43,7 @@
 		36E48CE32CA5F31D0099622D /* Leftbuttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48CE22CA5F31D0099622D /* Leftbuttons.swift */; };
 		36E48CE52CA5F3720099622D /* MediaCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48CE42CA5F3720099622D /* MediaCardViewModel.swift */; };
 		36E48CEA2CA5F3CC0099622D /* LoginPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 36E48CE92CA5F3CC0099622D /* LoginPackage */; };
+		36E549522CB956D3006B89CB /* RatingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E549512CB956D3006B89CB /* RatingAverage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		36E48CE02CA5F2BC0099622D /* MediaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCard.swift; sourceTree = "<group>"; };
 		36E48CE22CA5F31D0099622D /* Leftbuttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leftbuttons.swift; sourceTree = "<group>"; };
 		36E48CE42CA5F3720099622D /* MediaCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCardViewModel.swift; sourceTree = "<group>"; };
+		36E549512CB956D3006B89CB /* RatingAverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingAverage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 				367A548A2CB457C8005EA63F /* BackgroundImage.swift */,
 				367A548C2CB457FD005EA63F /* MediaImage.swift */,
 				367A548E2CB45829005EA63F /* MediaDetails.swift */,
+				36E549512CB956D3006B89CB /* RatingAverage.swift */,
 			);
 			path = MediCardViews;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				363BFD162CB8825E00984278 /* DIContainer.swift in Sources */,
 				367A548B2CB457C8005EA63F /* BackgroundImage.swift in Sources */,
 				367A54912CB45A44005EA63F /* MainView.swift in Sources */,
+				36E549522CB956D3006B89CB /* RatingAverage.swift in Sources */,
 				36759C4A2CAABB5B007F36DB /* AddFavoriteUseCase.swift in Sources */,
 				36D23EC12CA9A05900088540 /* TrendingMovieMapper.swift in Sources */,
 				36E48CB82CA5F1480099622D /* TrendingView.swift in Sources */,

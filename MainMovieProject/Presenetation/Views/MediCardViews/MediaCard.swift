@@ -17,7 +17,9 @@ struct MediaCard: View {
     var body: some View {
         ZStack {
             BackgroundImage(image: viewModel.image)
-            
+                .overlay(alignment: .bottomTrailing) {
+                    RatingAverage(viewModel: viewModel)
+                }
             HStack {
                 if !(viewModel.showVideo){
                     MediaImage(viewModel: viewModel)
