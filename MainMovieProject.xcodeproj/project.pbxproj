@@ -44,6 +44,7 @@
 		36E48CE52CA5F3720099622D /* MediaCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48CE42CA5F3720099622D /* MediaCardViewModel.swift */; };
 		36E48CEA2CA5F3CC0099622D /* LoginPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 36E48CE92CA5F3CC0099622D /* LoginPackage */; };
 		36E549522CB956D3006B89CB /* RatingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E549512CB956D3006B89CB /* RatingAverage.swift */; };
+		36E549542CB9794A006B89CB /* MediaDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E549532CB9794A006B89CB /* MediaDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		36E48CE22CA5F31D0099622D /* Leftbuttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leftbuttons.swift; sourceTree = "<group>"; };
 		36E48CE42CA5F3720099622D /* MediaCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCardViewModel.swift; sourceTree = "<group>"; };
 		36E549512CB956D3006B89CB /* RatingAverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingAverage.swift; sourceTree = "<group>"; };
+		36E549532CB9794A006B89CB /* MediaDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				36E48CE22CA5F31D0099622D /* Leftbuttons.swift */,
 				369CF7372CB00D4300A5CAB4 /* RatingView.swift */,
 				369CF7432CB2FD1F00A5CAB4 /* Youtubeplayer.swift */,
+				36E549532CB9794A006B89CB /* MediaDetails.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				36759C422CA9B816007F36DB /* GetTrendingUseCase.swift in Sources */,
 				369CF73E2CB1CDC400A5CAB4 /* AddwhishlistUseCase.swift in Sources */,
 				36D23EBF2CA99DA500088540 /* MovieEntity.swift in Sources */,
+				36E549542CB9794A006B89CB /* MediaDetails.swift in Sources */,
 				36E48CE52CA5F3720099622D /* MediaCardViewModel.swift in Sources */,
 				369CF7462CB2FEB100A5CAB4 /* File.swift in Sources */,
 				36759C4C2CAABB71007F36DB /* AddRatingUseCase.swift in Sources */,

@@ -39,12 +39,12 @@ struct MediaCard: View {
         .overlay(alignment: .leading) {
             if viewModel.showActions {
                 Image(systemName: "\(viewModel.index + 1).lane")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                .offset(x: -40, y: 0)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .offset(x: -40, y: 0)
             }
         }
-   
+        
         .onAppear(perform: {
             viewModel.executeFetchImage()
         })

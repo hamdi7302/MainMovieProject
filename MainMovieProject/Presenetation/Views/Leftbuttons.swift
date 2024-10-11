@@ -9,9 +9,7 @@ import SwiftUI
 struct LeftButtons: View {
     
     @ObservedObject var mediaCardViewModel: MediaCardViewModel
-    
-
-    
+        
     var body: some View {
         VStack {
             VStack(spacing: 15) {
@@ -20,8 +18,6 @@ struct LeftButtons: View {
                 FavoriteButton(mediaCardViewModel: mediaCardViewModel)
                 RatingButton(mediaCardViewModel: mediaCardViewModel)
                 WatchlistButton(mediaCardViewModel: mediaCardViewModel)
-              
-                     
                 buyRent(mediaCardViewModel: mediaCardViewModel)
             
                 
@@ -43,11 +39,13 @@ struct InfoButton: View {
         Button {
             withAnimation {
                 mediaCardViewModel.showRatingview = false
+                mediaCardViewModel.showInfoDetails.toggle()
             }
         } label: {
             Image(systemName: "info.circle.fill")
                 .foregroundStyle(Color.white)
         }
+        
     }
 }
 
