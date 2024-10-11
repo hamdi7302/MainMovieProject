@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct MediaDetails: View {
+struct MediaOverView: View {
     @ObservedObject var viewModel: MediaCardViewModel
     
     var body: some View {
@@ -35,5 +35,5 @@ struct MediaDetails: View {
 }
 
 #Preview {
-    MediaDetails(viewModel: MediaCardViewModel(index: 2, resultCard: Movie(id: 12, originalTitle: "Movie Title", overview: "This is a test overview for the movie.", popularity: 10, realeaseDate: "2023-01-01", mediaType: "movie", genreids: [], posterPath: "", vote_average: 10), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
+    MediaOverView(viewModel: MediaCardViewModel(index: 2, resultCard: Movie(id: 12, originalTitle: "Movie Title", overview: "This is a test overview for the movie.", popularity: 10, realeaseDate: "2023-01-01", mediaType: "movie", genreids: [], posterPath: "", vote_average: 10), isSelected: false, mediaRepository: MediaDetailsRepoImpl()))
 }

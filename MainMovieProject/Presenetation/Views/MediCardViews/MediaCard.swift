@@ -23,7 +23,7 @@ struct MediaCard: View {
             HStack {
                 if !(viewModel.showVideo){
                     MediaImage(viewModel: viewModel)
-                    MediaDetails(viewModel: viewModel)
+                    MediaOverView(viewModel: viewModel)
                 }else {
                     YouTubePlayer(videoID: viewModel.videoUrl ?? "")
                 }
