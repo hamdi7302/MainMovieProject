@@ -30,7 +30,7 @@ struct MainView: View {
                         }
                         .tag(0)
                     
-                    PopularView()
+                    PopularMoviesView(viewModel: trendingViewModel)
                         .tabItem {
                             Label("Popular", systemImage: "lasso")
                         }

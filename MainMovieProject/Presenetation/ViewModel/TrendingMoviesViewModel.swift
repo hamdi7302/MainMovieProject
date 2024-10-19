@@ -33,7 +33,7 @@ class TrendingMoviesViewModel: ObservableObject{
         }
     
     func fetchtrendingMovies () {
-        getTrendingUseCase.execute(params: .day)
+        getTrendingUseCase.execute(params: .week)
             .receive(on: DispatchQueue.main) // Ensure UI updates happen on the main thread
             .sink { completion in
                 switch completion {

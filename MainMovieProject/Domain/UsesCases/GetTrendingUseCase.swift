@@ -22,7 +22,7 @@ class GetTrendingUseCaseImpl: GetTrendingUseCase {
     }
     
     func execute(params: TrendingTypeDTO) -> AnyPublisher<[Movie],NetworkError> {
-        return repository.getTrendingMedia(trendingType: .day)
+        return repository.getTrendingMedia(trendingType: .week)
     }
  
 }

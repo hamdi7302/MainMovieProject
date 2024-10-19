@@ -17,7 +17,7 @@ enum MediaCardState {
     case rating(Int)
 }
 
-class MediaCardViewModel: ObservableObject {
+class MediaCardViewModel: ObservableObject , Identifiable{
     let index: Int
     let card: Movie
     @Published var showActions: Bool {
