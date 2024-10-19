@@ -19,46 +19,55 @@ struct PopularMoviesView: View {
             Color.black.ignoresSafeArea()
             
             ZStack { // Add spacing between rectangles
-                
+                 
                 ForEach(viewModel.mediaCardViewModels.prefix(3).reversed(), id:  \.card.id) {vm in
                     
                     if viewModel.mediaCardViewModels.first?.card.id == vm.card.id {
-                        MediaImage(viewModel: vm)
-                            .frame(width: 200,height: 200)
-                            .offset(offset)
-                            .onAppear(perform: {
-                                print(index)
-                                DispatchQueue.main.async {
-                                    vm.executeFetchImage()
-                                }
-                                
-                            }).gesture(
-                                DragGesture()
-                                    .onChanged { value in
-                                        offset = value.translation // Update the offset during dragging
+                        VStack{
+                            Text(vm.card.originalTitle)
+                                .font(.title)
+                                .foregroundStyle(.white)
+                            Spacer()
+                            MediaImage(viewModel: vm)
+                                .frame(width: 300,height: 500)
+                                .offset(offset)
+                                .onAppear(perform: {
+                                    
+                                    DispatchQueue.main.async {
+                                        vm.executeFetchImage()
                                     }
-                                    .onEnded { value in
-                                        // Reset offset if dragging is released
-                                        withAnimation {
-                                            DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
-                                                offset = .zero
-                                                viewModel.mediaCardViewModels.removeFirst()
-                                            })
-                                            
+                                    
+                                }).gesture(
+                                    DragGesture()
+                                        .onChanged { value in
+                                            offset = value.translation
                                         }
-                                    }
-                            )
+                                        .onEnded { value in
+                                            
+                                            withAnimation {
+                                                DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute: {
+                                                    offset = .zero
+                                                    viewModel.mediaCardViewModels.removeFirst()
+                                                })
+                                                
+                                            }
+                                        }
+                                )
+                        }.padding(50)
                     }else{
-                        
-                        MediaImage(viewModel: vm)
-                            .frame(width: 200,height: 200)
-                            .onAppear(perform: {
-                                print(index)
-                                DispatchQueue.main.async {
-                                    vm.executeFetchImage()
-                                }
-                                
-                            })
+                        VStack{
+                            Spacer()
+                            MediaImage(viewModel: vm)
+                                .rotationEffect(Angle(degrees: 10))
+                                .frame(width: 300,height: 500)
+                                .onAppear(perform: {
+                                    
+                                    DispatchQueue.main.async {
+                                        vm.executeFetchImage()
+                                    }
+                                    
+                                })
+                        }.padding(50)
                     }
                 }
             }
