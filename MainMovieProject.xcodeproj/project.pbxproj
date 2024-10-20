@@ -10,6 +10,7 @@
 		363618462CC2E7DB00D99113 /* PopularsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363618452CC2E7DB00D99113 /* PopularsView.swift */; };
 		36378EBD2CA61900008A2F5E /* GenreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36378EBC2CA61900008A2F5E /* GenreDataModel.swift */; };
 		363BFD162CB8825E00984278 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BFD152CB8825E00984278 /* DIContainer.swift */; };
+		3655AA462CC5B89800FC82A1 /* CGpointExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655AA452CC5B89800FC82A1 /* CGpointExt.swift */; };
 		3669EB6D2CA9A6C90039A966 /* MovieNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3669EB6C2CA9A6C90039A966 /* MovieNetworkManager.swift */; };
 		3669EB722CA9A7950039A966 /* TrendingMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3669EB712CA9A7950039A966 /* TrendingMoviesViewModel.swift */; };
 		3669EB752CA9AD2F0039A966 /* TrendingMediaRerpository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3669EB742CA9AD2F0039A966 /* TrendingMediaRerpository.swift */; };
@@ -69,6 +70,7 @@
 		363618452CC2E7DB00D99113 /* PopularsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularsView.swift; sourceTree = "<group>"; };
 		36378EBC2CA61900008A2F5E /* GenreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDataModel.swift; sourceTree = "<group>"; };
 		363BFD152CB8825E00984278 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		3655AA452CC5B89800FC82A1 /* CGpointExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGpointExt.swift; sourceTree = "<group>"; };
 		3669EB6C2CA9A6C90039A966 /* MovieNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetworkManager.swift; sourceTree = "<group>"; };
 		3669EB712CA9A7950039A966 /* TrendingMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesViewModel.swift; sourceTree = "<group>"; };
 		3669EB742CA9AD2F0039A966 /* TrendingMediaRerpository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMediaRerpository.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				369CF7452CB2FEB100A5CAB4 /* File.swift */,
+				3655AA452CC5B89800FC82A1 /* CGpointExt.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				3669EB752CA9AD2F0039A966 /* TrendingMediaRerpository.swift in Sources */,
 				36E3D8DE2CB887F900FE87A3 /* PopularView.swift in Sources */,
 				36E3D8DC2CB887AD00FE87A3 /* SearchableView.swift in Sources */,
+				3655AA462CC5B89800FC82A1 /* CGpointExt.swift in Sources */,
 				369CF7402CB2B00800A5CAB4 /* FetchTrailersUseCase.swift in Sources */,
 				36378EBD2CA61900008A2F5E /* GenreDataModel.swift in Sources */,
 				36759C422CA9B816007F36DB /* GetTrendingUseCase.swift in Sources */,

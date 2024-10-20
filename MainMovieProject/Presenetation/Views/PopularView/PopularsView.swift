@@ -32,7 +32,7 @@ struct PopularMoviesView: View {
                                 .frame(width: 300,height: 500)
                                 .offset(offset)
                                 .onAppear(perform: {
-                                    
+                                    offset = .zero
                                     DispatchQueue.main.async {
                                         vm.executeFetchImage()
                                     }
@@ -46,8 +46,11 @@ struct PopularMoviesView: View {
                                             
                                             withAnimation {
                                                 DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute: {
-                                                    offset = .zero
-                                                    viewModel.mediaCardViewModels.removeFirst()
+                                                    if value.startLocation.distance(to: value.location) > 100 {
+                                                        viewModel.mediaCardViewModels.removeFirst()
+                                                    }else {
+                                                        offset = .zero
+                                                    }
                                                 })
                                                 
                                             }
@@ -58,16 +61,17 @@ struct PopularMoviesView: View {
                         VStack{
                             Spacer()
                             MediaImage(viewModel: vm)
+                                .blur(radius: 3)
                                 .rotationEffect(Angle(degrees: 10))
                                 .frame(width: 300,height: 500)
                                 .onAppear(perform: {
-                                    
                                     DispatchQueue.main.async {
                                         vm.executeFetchImage()
                                     }
                                     
                                 })
                         }.padding(50)
+                            .allowsHitTesting(false)
                     }
                 }
             }
