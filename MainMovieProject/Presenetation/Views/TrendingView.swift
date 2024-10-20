@@ -17,27 +17,39 @@ struct TrendingView: View {
     }
     
     var body: some View {
-        VStack(alignment:.leading){
-            Text("Trending")
-                .multilineTextAlignment(.leading)
-                .font(.headline)
-                .foregroundStyle(Color.white)
-                .padding()
-            ScrollView (showsIndicators: false) {
-                LazyVStack(spacing: 12 ){
-                    ForEach(viewModel.mediaCardViewModels, id: \.card.id) { mediaViewModel in
-                        MediaCard(viewModel: mediaViewModel)
-                            .onTapGesture {
-                                withAnimation {
-                                    viewModel.selectedMovieId = mediaViewModel.card.id
-                                    mediaViewModel.showRatingview = false
-                                    updateSelectedStates()
+        NavigationStack {
+            VStack(alignment:.leading){
+                Text("Trending")
+                    .multilineTextAlignment(.leading)
+                    .font(.headline)
+                    .foregroundStyle(Color.white)
+                    .padding()
+                ScrollView (showsIndicators: false) {
+                    LazyVStack(spacing: 12 ){
+                        ForEach(viewModel.mediaCardViewModels, id: \.card.id) { mediaViewModel in
+                            MediaCard(viewModel: mediaViewModel)
+                                .onTapGesture {
+                                    withAnimation {
+                                        viewModel.selectedMovieId = mediaViewModel.card.id
+                                        mediaViewModel.showRatingview = false
+                                        updateSelectedStates()
+                                    }
                                 }
-                            }
+                        }
                     }
+                    .padding(.horizontal,30)
                 }
-                .padding(.horizontal,30)
+                .navigationBarTitleDisplayMode(.inline)
             }
+//            .navigationDestination(for: String.self) { string in
+//                SearchableView()
+//            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    ToolbarView()
+                }
+            }
+           
         }
     }
 }

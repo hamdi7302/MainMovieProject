@@ -21,10 +21,11 @@ struct MainView: View {
     }
 
     var body: some View {
-        NavigationStack {
+      
             VStack {
                 TabView {
                     TrendingView(viewModel: trendingViewModel)
+                        
                         .tabItem {
                             Label("Trending", systemImage: "lasso.badge.sparkles")
                         }
@@ -42,16 +43,9 @@ struct MainView: View {
                         .tag(3)
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    ToolbarView()
-                }
-            }
-            .navigationDestination(for: String.self) { string in
-                SearchableView()
-            }
-            .navigationBarTitleDisplayMode(.inline)
-        }
+            
+          
+        
     }
 }
 

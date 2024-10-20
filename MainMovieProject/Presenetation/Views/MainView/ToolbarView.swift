@@ -10,21 +10,17 @@ import SwiftUI
 struct ToolbarView: View {
     var body: some View {
         HStack {
-            Image(systemName: "magnifyingglass")
+            Image(systemName: "magnifyingglass").padding(.leading,20)
             NavigationLink(destination: SearchableView()) {
                 Text("Search in")
                     .foregroundColor(.primary)
-            }
-            Spacer()
-        }
-        .padding(.horizontal, 20)
-        .background(
+            }.padding(.trailing,20)
+        } .background(
             Rectangle()
                 .fill(Color.gray.opacity(0.2))
                 .frame(height: 40)
                 .cornerRadius(8)
         )
-        .padding(20)
     }
 }
 #Preview {
